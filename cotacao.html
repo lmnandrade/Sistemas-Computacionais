@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Hello, World!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-container">
+        <div class="logo-area">
+          <figure class="logo-figure">
+            <img
+              src="https://static.wikia.nocookie.net/harrypotter/images/e/e4/Bras%C3%A3o_de_Gringotes.png/revision/latest?cb=20180807195948&path-prefix=pt-br"
+              alt="Brasão Oficial do Banco Gringotts"
+              class="logo-brasao"
+            />
+          </figure>
+          <span class="logo-texto">GRINGOTTS BANK</span>
+        </div>
+        <nav class="nav" aria-label="Navegação principal">
+          <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="cofre.html" class="nav-link">Nosso Cofre</a></li>
+            <li><a href="#cotacao" class="nav-link">Câmbio Trouxa</a></li>
+            <li><a href="#agendamento" class="nav-link">Agendar Visita</a></li>
+            <li><a href="#seguranca" class="nav-link">Segurança</a></li>
+          </ul>
+        </nav>
+        <div class="user-action">
+          <a href="login.html" class="btn-acesso">ACESSE SUA CONTA</a>
+        </div>
+      </div>
+    </header>
+    <main>
+       <section id="cotacao" class="quote">
+        <h2>Câmbio Trouxa</h2>
+        <table class="tabela-cambio">
+          <thead>
+            <tr>
+              <th>Moeda Trouxa</th>
+              <th>Galeão (G)</th>
+              <th>Cicle (S)</th>
+              <th>Nuque (K)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1 Real (BRL)</strong></td>
+              <td>0.03 G</td>
+              <td>0.51 S</td>
+              <td>14.88 K</td>
+            </tr>
+            <tr>
+              <td><strong>1 Dólar (USD)</strong></td>
+              <td>0.20 G</td>
+              <td>3.40 S</td>
+              <td>98.80 K</td>
+            </tr>
+            <tr>
+              <td><strong>1 Euro (EUR)</strong></td>
+              <td>0.22 G</td>
+              <td>3.74 S</td>
+              <td>108.68 K</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Guia Monetário</h3>
+        <div class="moedas">
+          <figure class="figura-moeda">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtfabCkihsCWlOXVpbdm4fMAWghd88fdhU5KjuaQzlxE2KjIR4UtsKVw&s=10"
+              alt="Moedas de Gringotts"
+              width="150"
+            />
+          </figure>
+          <ul class="lista-moedas">
+              <li><strong>Galeão:</strong> Moeda de ouro grande.</li>
+              <li><strong>Cicle:</strong> Moeda de prata de valor médio.</li>
+              <li><strong>Nuque:</strong> Pequena moeda de bronze de menor valor.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

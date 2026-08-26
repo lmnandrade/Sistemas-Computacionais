@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Hello, World!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <maim>
+      <section id="cadastro" class="secao-cadastro">
+        <div class="cadastro-container">
+          <h2>Abrir Conta em Gringotts</h2>
+          <p class="subtitulo">Preencha seus dados bruxos para solicitar a abertura do cofre.</p>
+
+          <form action="http://localhost:8080/api/cadastro" method="POST" class="form-cadastro">
+            
+            <!-- Nome Completo -->
+            <div class="campo-input">
+              <label for="nome">Nome Completo</label>
+              <input type="text" id="nome" name="nomeCompleto" required />
+            </div>
+
+            <div class="campo-input">
+              <label for="familia">Família</label>
+              <input type="text" id="familia" name="familia" placeholder="Ex: Dumbledore, Weasley, Malfoy..." required />
+            </div>
+            <!-- CBF e RG -->
+            <div class="linha-dupla">
+              <div class="campo-input">
+                <label for="cbf">CBF (Cadastro de Bruxos Físicos)</label>
+                <input type="text" id="cbf" name="cbf" placeholder="000.000.000-00" required />
+              </div>
+
+              <div class="campo-input">
+                <label for="rg">RG Bruxo</label>
+                <input type="text" id="rg" name="rg" placeholder="00.000.000-0" required />
+              </div>
+            </div>
+
+            <!-- Data de Nascimento e Sexo -->
+            <div class="linha-dupla">
+              <div class="campo-input">
+                <label for="dataNascimento">Data de Nascimento</label>
+                <input type="date" id="dataNascimento" name="dataNascimento" required />
+              </div>
+
+              <div class="campo-input">
+                <label for="sexo">Sexo</label>
+                <select id="sexo" name="sexo" required>
+                  <option value="" disabled selected>Selecione...</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Feminino">Feminino</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Profissão -->
+            <div class="campo-input">
+              <label for="profissao">Profissão</label>
+              <input type="text" id="profissao" name="profissao" placeholder="Ex: Auror, Herbologista, Poções..." required />
+            </div>
+
+            <!-- Botões -->
+            <button type="submit" class="btn-entrar">SOLICITAR ABERTURA DE CONTA</button>
+            
+            <div class="acoes-login">
+              <a href="login.html" class="btn-voltar">Já tenho conta (Fazer Login)</a>
+            </div>
+
+          </form>
+        </div>
+      </section>
+    </main>
+    <script src="cadastro.js"></script>
+  </body>

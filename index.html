@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Hello, World!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-container">
+        <div class="logo-area">
+          <figure class="logo-figure">
+            <img
+              src="https://static.wikia.nocookie.net/harrypotter/images/e/e4/Bras%C3%A3o_de_Gringotes.png/revision/latest?cb=20180807195948&path-prefix=pt-br"
+              alt="Brasão Oficial do Banco Gringotts"
+              class="logo-brasao"
+            />
+          </figure>
+          <span class="logo-texto">GRINGOTTS BANK</span>
+        </div>
+        <nav class="nav" aria-label="Navegação principal">
+          <ul>
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="cofre.html" class="nav-link">Nosso Cofre</a></li>
+            <li><a href="cotacao.html" class="nav-link">Câmbio Trouxa</a></li>
+            <li><a href="#agendamento" class="nav-link">Agendar Visita</a></li>
+            <li><a href="#seguranca" class="nav-link">Segurança</a></li>
+          </ul>
+        </nav>
+        <div class="user-action">
+          <a href="login.html" class="btn-acesso">ACESSE SUA CONTA</a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section id="home" class="carrossel">
+        <div class="carousel-container">
+        <!--slide 1-->
+          <div class="slide active">
+            <div class="hero-conteudo">
+              <h2>Novo Cartão Gringotts Black</h2>
+              <p>Com acesso ilimitado aos cofres de alta segurança e câmbio direto em Galeões.</p>
+              <a href="#cofre" class="btn-hero">Saiba mais</a>
+            </div>
+          </div>
+        <!--slide 2-->
+          <div class="slide">
+            <div class="hero-conteudo">
+              <h2>Empréstimo Rápido em Galeões</h2>
+              <p>Taxas especiais para bruxos cadastrados no Ministério da Magia.</p>
+              <a href="#cofre" class="btn-hero">Simular Câmbio</a>
+            </div>
+          </div>
+        <!--slide 3-->
+          <div class="slide">
+            <div class="hero-conteudo">
+              <h2>Segurança com Dragões</h2>
+              <p>Proteção nível máximo para os cofres das famílias mais antigas.</p>
+              <a href="#seguranca" class="btn-hero">Conhecer Cofres</a>
+            </div>
+          </div>
+        </div>
+        <!--Controle da Navegação-->
+        <div class="carousel-controls">
+          <button class="btn-arrow prev-btn" aria-label="Slide anterior">&#10094;</button>
+      
+          <div class="dots-container">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+          <button class="btn-arrow next-btn" aria-label="Próximo slide">&#10095;</button>
+        </div>
+      </section>
+
+      </section>
+    </main>
+
+  </body>
+</html>

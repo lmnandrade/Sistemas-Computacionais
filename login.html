@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Hello, World!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <section id="login" class="secao-login">
+        <div class="login-container">
+          <h2>Acesse sua Conta</h2>
+          <form action="/login" method="POST" class="form-login">
+            <div class="campo-input">
+              <label for="usuario">Bruxo / Usuário</label>
+              <input type="text" id="usuario" name="usuario" required />
+            </div>
+
+            <div class="campo-input">
+              <label for="senha">Chave de Acesso / Senha</label>
+              <input type="password" id="senha" name="senha" required />
+            </div>
+
+            <button type="submit" class="btn-entrar">ENTRAR NO COFRE</button>
+
+            <!-- Ações Secundárias (Não sou cliente / Voltar) -->
+            <div class="acoes-login">
+              <a href="cadastro.html" class="link-cadastro">Não sou cliente (Abrir Conta)</a>
+              <a href="index.html" class="btn-voltar">Voltar</a>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
