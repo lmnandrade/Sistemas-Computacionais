@@ -1,0 +1,119 @@
+/* Resets Básicos e Tipografia */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #FFFFFF;
+  background-color: #000000;
+  line-height: 1.6;
+}
+
+.texto-pequeno {
+  font-size: 0.5rem;
+  font-weight: normal;
+  opacity: 0.85;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cinzel Decorative', serif;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+}
+
+/* Cabeçalho e Navegação */
+.header {
+  background-color: black;
+  width: 100%;
+  border-bottom: 4px solid #D4AF37;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-figure {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo-brasao {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 0.5cm;
+}
+
+.logo-texto {
+  font-family: 'HarryPotter', 'Cinzel', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #D4AF37;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #D4AF37;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.2rem;
+  transition: color 0.2s, border-bottom 0.2s;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: #F5EC82;
+  border-bottom: 2px solid #F5EC82;
+  outline: none;
+}
+
+.btn-acesso {
+  background-color: #D4AF37;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  transition: background-color 0.2s;
+}
+
+.btn-acesso:hover {
+  background-color: #D4AF37;
+}
+
+@media (max-width: 850px) {
+  .header-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+}

@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Hello, World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Câmbio Trouxa | Gringotts Bank</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="formularios.css">
   </head>
   <body>
     <header class="header">
@@ -27,9 +29,9 @@
           <ul>
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="cofre.html" class="nav-link">Nosso Cofre</a></li>
-            <li><a href="#cotacao" class="nav-link">Câmbio Trouxa</a></li>
-            <li><a href="#agendamento" class="nav-link">Agendar Visita</a></li>
-            <li><a href="#seguranca" class="nav-link">Segurança</a></li>
+            <li><a href="cotacao.html" class="nav-link active">Câmbio Trouxa</a></li>
+            <li><a href="index.html#agendamento" class="nav-link">Agendar Visita</a></li>
+            <li><a href="index.html#seguranca" class="nav-link">Segurança</a></li>
           </ul>
         </nav>
         <div class="user-action">
@@ -37,15 +39,18 @@
         </div>
       </div>
     </header>
-    <main>
-       <section id="cotacao" class="quote">
-        <h2>Câmbio Trouxa</h2>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 60px;">
+      <section id="cotacao" class="quote">
+        <h2 class="titulo-secao">Câmbio Trouxa</h2>
+        <p class="subtitulo-secao">Cotações oficiais do Ministério da Magia em tempo real.</p>
+        
         <table class="tabela-cambio">
           <thead>
             <tr>
               <th>Moeda Trouxa</th>
               <th>Galeão (G)</th>
-              <th>Cicle (S)</th>
+              <th>Sicle (S)</th>
               <th>Nuque (K)</th>
             </tr>
           </thead>
@@ -70,22 +75,85 @@
             </tr>
           </tbody>
         </table>
-        <h3>Guia Monetário</h3>
-        <div class="moedas">
+
+        <div class="cambio-card-form" style="max-width: 600px; margin: 40px auto; background-color: var(--cor-card-fundo); border: 1px solid var(--borda-ouro); border-radius: 12px; padding: 30px;">
+          <form id="form-conversao" class="form-simulador">
+            <h3 style="font-family: var(--fonte-titulo); color: var(--ouro-brilhante); margin-top: 0; text-align: center;">Simulador de Conversão Direta</h3>
+            
+            <div class="campo-grupo">
+              <label for="moeda-origem">Selecione a Moeda Trouxa:</label>
+              <select id="moeda-origem" style="background-color: var(--cor-fundo); border: 1px solid var(--borda-ouro); color: #fff; padding: 12px; border-radius: 6px; font-size: 1rem;">
+                <option value="BRL">Real Brasileiro (BRL)</option>
+                <option value="USD">Dólar Americano (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+              </select>
+            </div>
+
+            <div class="campo-grupo">
+              <label for="valor-trouxa">Valor a converter:</label>
+              <input type="number" id="valor-trouxa" placeholder="Digite o valor (ex: 100)" min="0" step="0.01" required>
+            </div>
+
+            <div class="resultado-simulacao" style="background-color: var(--cor-fundo); padding: 20px; border-radius: 8px; margin: 20px 0; text-align: center; border: 1px solid var(--borda-ouro);">
+              <p style="margin: 0 0 8px 0; color: var(--texto-mutado);">Você receberá aproximadamente:</p>
+              <div id="resultado-extenso" class="valor-resultado" style="font-size: 1.3rem; color: var(--ouro-principal); font-family: var(--fonte-titulo);">
+                0 Galeões, 0 Sicles e 0 Nuques
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primario" style="width: 100%; cursor: pointer;">Converter Agora</button>
+          </form>
+        </div>
+
+        <h3 style="font-family: var(--fonte-titulo); color: var(--ouro-principal); text-align: center; margin-top: 50px;">Guia Monetário</h3>
+        <div class="moedas" style="display: flex; gap: 20px; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
           <figure class="figura-moeda">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEtfabCkihsCWlOXVpbdm4fMAWghd88fdhU5KjuaQzlxE2KjIR4UtsKVw&s=10"
               alt="Moedas de Gringotts"
               width="150"
+              style="border-radius: 8px; border: 1px solid var(--borda-ouro);"
             />
           </figure>
-          <ul class="lista-moedas">
-              <li><strong>Galeão:</strong> Moeda de ouro grande.</li>
-              <li><strong>Cicle:</strong> Moeda de prata de valor médio.</li>
-              <li><strong>Nuque:</strong> Pequena moeda de bronze de menor valor.</li>
+          <ul class="lista-moedas" style="line-height: 1.8;">
+            <li><strong>Galeão:</strong> Moeda de ouro grande. (1 Galeão = 17 Sicles)</li>
+            <li><strong>Sicle:</strong> Moeda de prata de valor médio. (1 Sicle = 29 Nuques)</li>
+            <li><strong>Nuque:</strong> Pequena moeda de bronze de menor valor.</li>
           </ul>
         </div>
       </section>
     </main>
+
+    <script>
+      document.getElementById('form-conversao').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const valorInput = parseFloat(document.getElementById('valor-trouxa').value);
+        const moeda = document.getElementById('moeda-origem').value;
+
+        if (isNaN(valorInput) || valorInput <= 0) return;
+
+        // Cotação base para Galeões
+        const cotacoesEmGaleao = {
+          'BRL': 0.03,
+          'USD': 0.20,
+          'EUR': 0.22
+        };
+
+        const totalGaleoesExatos = valorInput * cotacoesEmGaleao[moeda];
+
+        // Regra de conversão: 1 Galeão = 17 Sicles | 1 Sicle = 29 Nuques (1 Galeão = 493 Nuques)
+        const totalNuques = Math.round(totalGaleoesExatos * 17 * 29);
+
+        const galeoes = Math.floor(totalNuques / (17 * 29));
+        const nuquesRestantesAposGaleoes = totalNuques % (17 * 29);
+        
+        const sicles = Math.floor(nuquesRestantesAposGaleoes / 29);
+        const nuques = nuquesRestantesAposGaleoes % 29;
+
+        document.getElementById('resultado-extenso').innerHTML = 
+          `<strong>${galeoes}</strong> Galeões, <strong>${sicles}</strong> Sicles e <strong>${nuques}</strong> Nuques`;
+      });
+    </script>
   </body>
 </html>

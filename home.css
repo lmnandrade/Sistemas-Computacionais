@@ -1,0 +1,714 @@
+/* CARROSSEL / HERO SECTION*/
+.carrossel {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 80px);
+  min-height: 500px;
+  background-color: #000000;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding: 2rem 8%;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Imagens de Fundo (Ajuste a pasta conforme seus arquivos no VS Code) */
+.slide:nth-child(1) {
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+              url('balck_card.jpg');
+}
+
+.slide:nth-child(2) {
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+              url('dinheiro\ \(1\).jpg');
+}
+
+.slide:nth-child(3) {
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+              url('banco_gringotts\ \(1\).jpg');
+}
+
+/* Conteúdo dos Slides */
+.hero-conteudo {
+  max-width: 500px;
+  z-index: 2;
+}
+
+.hero-conteudo h2 {
+  font-size: 2.5rem;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.hero-conteudo p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #E0E0E0;
+}
+
+.btn-hero {
+  display: inline-block;
+  padding: 0.75rem 1.8rem;
+  border: 2px solid #D4AF37;
+  border-radius: 20px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+  background-color: #D4AF37;
+  color: #000000;
+}
+
+/* Controles do Carrossel (Setas e Bolinhas) */
+.carousel-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.btn-arrow {
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  transition: transform 0.2s, color 0.2s;
+  line-height: 1;
+}
+
+.btn-arrow:hover {
+  color: #D4AF37;
+  transform: scale(1.3);
+}
+
+.dots-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot.active {
+  background-color: #D4AF37;
+  border-color: #D4AF37;
+  transform: scale(1.2);
+}
+
+/* ==========================================================================
+   SEÇÃO CÂMBIO TROUXA E TABELA
+   ========================================================================== */
+
+.secao-cambio {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.secao-cambio h2 {
+  text-align: center;
+  color: #D4AF37;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.tabela-cambio {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #111111;
+  border: 1px solid #D4AF37;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+}
+
+.tabela-cambio th {
+  background-color: #D4AF37;
+  color: #000000;
+  padding: 0.8rem 1rem;
+  text-align: left;
+  font-family: 'Cinzel', serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.tabela-cambio td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #222222;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+}
+
+.tabela-cambio tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.tabela-cambio tbody tr:hover {
+  background-color: #1a1a1ae5;
+  color: #F5EC82;
+}
+
+.tabela-cambio tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ==========================================================================
+   GUIA MONETÁRIO BRUXO
+   ========================================================================== */
+
+.secao-cambio h3 {
+  color: #D4AF37;
+  border-top: 2px solid #D4AF37;
+  border-bottom: 2px solid #D4AF37;
+  padding: 0.8rem 0;
+  margin: 2.5rem 0 1.5rem 0;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.moedas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.lista-moedas {
+  color: #FFFFFF;
+  list-style-type: square;
+  padding-left: 1.2rem;
+}
+
+.lista-moedas li {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+.figura-moeda {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.figura-moeda img {
+  max-width: 180px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MOBILE & TABLET)
+   ========================================================================== */
+
+@media (max-width: 850px) {
+  .carrossel {
+    height: calc(100vh - 130px);
+    min-height: 400px;
+  }
+
+  .slide {
+    padding: 2rem 5%;
+  }
+
+  .hero-conteudo h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-conteudo p {
+    font-size: 1rem;
+  }
+
+  .moedas {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .lista-moedas {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
+/* ==========================================
+   VARIÁVEIS E ESTILOS GLOBAIS DA HOME
+   ========================================== */
+:root {
+  --cor-fundo: #0a0a0c;
+  --cor-card-fundo: #141419;
+  --cor-fundo-alt: #101014;
+  --ouro-principal: #d4af37;
+  --ouro-brilhante: #f3e5ab;
+  --ouro-escuro: #8c6d29;
+  --texto-claro: #e8e6e3;
+  --texto-mutado: #a0a0a0;
+  --borda-ouro: rgba(212, 175, 55, 0.3);
+  
+  --fonte-titulo: 'Cinzel', serif;
+  --fonte-decorativa: 'Cinzel Decorative', serif;
+  --fonte-corpo: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--cor-fundo);
+  color: var(--texto-claro);
+  font-family: var(--fonte-corpo);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.titulo-secao {
+  font-family: var(--fonte-titulo);
+  font-size: 2.2rem;
+  color: var(--ouro-principal);
+  text-align: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subtitulo-secao {
+  text-align: center;
+  color: var(--texto-mutado);
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+/* ==========================================
+   1. ATALHOS RÁPIDOS
+   ========================================== */
+.atalhos-container {
+  padding: 30px 20px;
+  background-color: var(--cor-fundo-alt);
+  border-bottom: 1px solid var(--borda-ouro);
+}
+
+.atalhos-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.atalho-card {
+  background: var(--cor-card-fundo);
+  border: 1px solid var(--borda-ouro);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--texto-claro);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.atalho-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--ouro-principal);
+  box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+}
+
+.atalho-icone {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.atalho-card h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.1rem;
+  color: var(--ouro-brilhante);
+  margin: 0 0 5px 0;
+}
+
+.atalho-card p {
+  font-size: 0.85rem;
+  color: var(--texto-mutado);
+  margin: 0;
+}
+
+/* ==========================================
+   2. NOSSO COFRE
+   ========================================== */
+.secao-cofres {
+  padding: 80px 0;
+}
+
+.cofres-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.cofre-card {
+  background-color: var(--cor-card-fundo);
+  border: 1px solid var(--borda-ouro);
+  border-radius: 12px;
+  padding: 35px 25px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.cofre-card:hover {
+  transform: translateY(-8px);
+}
+
+.cofre-card.destaque {
+  border: 2px solid var(--ouro-principal);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+.badge-recomendado {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background-color: var(--ouro-principal);
+  color: #000;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.cofre-card h3 {
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  color: var(--ouro-brilhante);
+  margin: 0 0 5px 0;
+}
+
+.cofre-nivel {
+  color: var(--ouro-escuro);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.cofre-card p {
+  color: var(--texto-mutado);
+  line-height: 1.6;
+  flex-grow: 1;
+  margin-bottom: 25px;
+}
+
+/* Botões */
+.btn-primario, .btn-secundario {
+  display: inline-block;
+  text-align: center;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primario {
+  background-color: var(--ouro-principal);
+  color: #000;
+}
+
+.btn-primario:hover {
+  background-color: var(--ouro-brilhante);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.btn-secundario {
+  border: 1px solid var(--ouro-principal);
+  color: var(--ouro-principal);
+}
+
+.btn-secundario:hover {
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
+/* ==========================================
+   3. CÂMBIO TROUXA
+   ========================================== */
+.secao-cambio {
+  background-color: var(--cor-fundo-alt);
+  padding: 80px 0;
+  border-top: 1px solid var(--borda-ouro);
+  border-bottom: 1px solid var(--borda-ouro);
+}
+
+.cambio-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.cambio-texto h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  color: var(--ouro-principal);
+  margin-bottom: 15px;
+}
+
+.cambio-texto p {
+  color: var(--texto-mutado);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.lista-cotacao {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-cotacao li {
+  padding: 10px 0;
+  border-bottom: 1px dashed var(--borda-ouro);
+  color: var(--texto-claro);
+}
+
+.cambio-card-form {
+  background-color: var(--cor-card-fundo);
+  border: 1px solid var(--borda-ouro);
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.form-simulador h3 {
+  font-family: var(--fonte-titulo);
+  color: var(--ouro-brilhante);
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.campo-grupo label {
+  font-size: 0.9rem;
+  color: var(--texto-mutado);
+}
+
+.campo-grupo input {
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--borda-ouro);
+  padding: 12px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.resultado-simulacao {
+  background-color: var(--cor-fundo);
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.resultado-simulacao p {
+  margin: 0 0 5px 0;
+  font-size: 0.85rem;
+  color: var(--texto-mutado);
+}
+
+.valor-resultado {
+  font-family: var(--fonte-titulo);
+  font-size: 1.2rem;
+  color: var(--ouro-principal);
+  font-weight: bold;
+}
+
+/* 4. AGENDAMENTO E SEGURANÇA*/
+.secao-agendamento {
+  padding: 60px 0;
+}
+
+.agendamento-box {
+  background: linear-gradient(135deg, #1c180a 0%, #0a0a0c 100%);
+  border: 1px solid var(--ouro-principal);
+  border-radius: 12px;
+  padding: 50px 30px;
+  text-align: center;
+}
+
+.agendamento-box h2 {
+  font-family: var(--fonte-titulo);
+  color: var(--ouro-brilhante);
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.agendamento-box p {
+  color: var(--texto-mutado);
+  margin-bottom: 30px;
+}
+
+.btn-agendar {
+  display: inline-block;
+  background-color: var(--ouro-principal);
+  color: #000;
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn-agendar:hover {
+  background-color: var(--ouro-brilhante);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.secao-seguranca {
+  padding: 80px 0;
+  background-color: var(--cor-fundo-alt);
+}
+
+.seguranca-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.seguranca-card {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--cor-card-fundo);
+  border: 1px solid var(--borda-ouro);
+  border-radius: 8px;
+}
+
+.icone-seguranca {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.seguranca-card h3 {
+  font-family: var(--fonte-titulo);
+  color: var(--ouro-brilhante);
+  margin-bottom: 10px;
+}
+
+.seguranca-card p {
+  color: var(--texto-mutado);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* 5. RODAPÉ INSTITUCIONAL */
+.footer {
+  background-color: #050507;
+  border-top: 1px solid var(--borda-ouro);
+  padding: 60px 0 20px 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.footer-coluna h4 {
+  font-family: var(--fonte-titulo);
+  color: var(--ouro-principal);
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.footer-coluna p {
+  color: var(--texto-mutado);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-coluna ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-coluna ul li {
+  margin-bottom: 10px;
+}
+
+.footer-coluna ul a {
+  color: var(--texto-mutado);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+.footer-coluna ul a:hover {
+  color: var(--ouro-principal);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--texto-mutado);
+  font-size: 0.8rem;
+}
+
+/* RESPONSIVIDADE (MOBILE) */
+@media (max-width: 768px) {
+  .cambio-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .titulo-secao {
+    font-size: 1.8rem;
+  }
+}
