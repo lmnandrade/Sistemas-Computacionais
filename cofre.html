@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Hello, World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nossos Cofres - Banco Gringotts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="formularios.css">
+    <link rel="stylesheet" href="cofre.css">
   </head>
   <body>
     <header class="header">
@@ -28,7 +29,7 @@
         <nav class="nav" aria-label="Navegação principal">
           <ul>
             <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="#cofre" class="nav-link">Nosso Cofre</a></li>
+            <li><a href="#resumo-cofres" class="nav-link">Nosso Cofre</a></li>
             <li><a href="cotacao.html" class="nav-link">Câmbio Trouxa</a></li>
             <li><a href="#agendamento" class="nav-link">Agendar Visita</a></li>
             <li><a href="#seguranca" class="nav-link">Segurança</a></li>
@@ -39,16 +40,73 @@
         </div>
       </div>
     </header>
+
     <main>
-            <section>
+      <!-- História e Introdução -->
+      <section class="secao-cambio">
         <h2>Sobre Nossos Cofres</h2>
-          <h4>Conheça a história do melhor banco do mundo bruxo <span class="texto-pequeno">(o único)</span></h4>
-          <p>
-            Foi criado por um duende chamado Gringote, em 1474. O banco principal fica localizado no lado norte do Beco Diagonal em Londres, Inglaterra. O banco é utilizado por bruxos e bruxas para guardar dinheiro e itens raros e valiosos. É possível trocar dinheiro trouxa por dinheiro bruxo. O dinheiro trouxa trocado é depois devolvido à circulação no mundo trouxa pelos duendes. De acordo com Rúbeo Hagrid, além da Escola de Magia e Bruxaria de Hogwarts, Gringotes era o segundo lugar mais seguro do Mundo.
-            O lema do banco de Gringotes era "Fortius Quo Fidelius", que em latim significa "Força pela Lealdade".
-            Os cofres se localizam a centenas de quilômetros debaixo da terra e um labirinto de túneis cheios de curvas e cavernas.
-          </p>
+        <h4>Conheça a história do melhor banco do mundo bruxo <span class="texto-pequeno">(o único)</span></h4>
+        <p>
+          Foi criado pelo duende Gringote em 1474. O banco principal fica localizado no lado norte do Beco Diagonal em Londres, Inglaterra. Gringotes é utilizado por bruxos e bruxas para guardar dinheiro e itens raros e valiosos, sendo, além da Escola de Magia e Bruxaria de Hogwarts, o lugar mais seguro do mundo.
+        </p>
+        <p>
+          O lema do nosso banco é <em>"Fortius Quo Fidelius"</em> ("Força pela Lealdade"). Os cofres se localizam a centenas de quilômetros debaixo da terra, em um labirinto de túneis e cavernas profundas.
+        </p>
+      </section>
+
+      <!-- Especificações Padronizadas dos Cofres -->
+      <section id="detalhes-cofres" class="secao-cambio">
+        <h3>Sobre Nossos Cofres</h3>
+
+        <!-- Subtópico 1 -->
+        <article id="detalhes-padronizados" class="detalhe-cofre-item">
+          <h4>Cofres Padronizados (Níveis 1 ao 300)</h4>
+          <p>Projetados para as necessidades diárias do mundo bruxo, combinando acessibilidade prática com proteção contra feitiços simples.</p>
+          <ul>
+            <li><strong>Localização e Acesso:</strong> Níveis superiores (1 ao 300). Acesso rápido via chave de latão numerada com assinatura mágica única.</li>
+            <li><strong>Mecanismos de Segurança:</strong> Fechaduras imunes a feitiços simples de arrombamento (como <em>Alohomora</em>) e patrulhamento de duendes guardas.</li>
+            <li><strong>Estrutura e Recursos:</strong> Câmaras de alvenaria mágica reforçada (4m² a 12m²) iluminadas por Fogo Bruxo perpétuo.</li>
+            <li><strong>Uso Recomendado:</strong> Depósito de moedas correntes (Galeões, Sicles e Nuques), material escolar de Hogwarts e documentos pessoais.</li>
+            <li><strong>Público-Alvo:</strong> Estudantes, famílias bruxas e pequenos comerciantes do Beco Diagonal.</li>
+          </ul>
+        </article>
+
+        <!-- Subtópico 2 -->
+        <article id="detalhes-alta-seguranca" class="detalhe-cofre-item">
+          <h4>Cofres de Alta Segurança (Níveis 300 ao 600)</h4>
+          <p>Destinados à proteção de bens de alto valor, utilizando verificações biológicas mágicas exclusivas realizadas por duendes.</p>
+          <ul>
+            <li><strong>Localização e Acesso:</strong> Níveis intermediários (300 ao 600). Acesso por carrinho de alta velocidade e validação por toque direto de um duende credenciado.</li>
+            <li><strong>Mecanismos de Segurança:</strong> Portas mágicas sem fechadura física (derretem ao toque autorizado). Intrusos são sugados para o interior do cofre.</li>
+            <li><strong>Estrutura e Recursos:</strong> Portões de aço bruxo com encantamentos de contenção e isolamento mágico total.</li>
+            <li><strong>Uso Recomendado:</strong> Documentos confidenciais, joias raras, poções valiosas e heranças de médio porte.</li>
+            <li><strong>Público-Alvo:</strong> Bruxos de alta renda, corporações mágicas e potionistas renomados.</li>
+          </ul>
+        </article>
+
+        <!-- Subtópico 3 -->
+        <article id="detalhes-antigas-familias" class="detalhe-cofre-item">
+          <h4>Cofres das Antigas Famílias (Profundezas: Nível 600+)</h4>
+          <p>O nível máximo de segurança de Gringotes, construído nas cavernas mais profundas e reservado para tesouros ancestrais.</p>
+          <ul>
+            <li><strong>Localização e Acesso:</strong> Cavernas profundas (nível 600+). Exige condução por duendes mais antigos e validação de linhagem bruxa.</li>
+            <li><strong>Mecanismos de Segurança:</strong>
+              <ul>
+                <li><strong>Guardião Dragão:</strong> Proteção por dragões treinados.</li>
+                <li><strong>Cascata do Ladrão:</strong> Queda d'água que anula feitiços de disfarce e Poção Polisuco.</li>
+                <li><strong>Defesas Ativas:</strong> Encantamentos <em>Geminio</em> (duplicação ao toque) e <em>Flagrante</em> (queimadura ao tocar).</li>
+              </ul>
+            </li>
+            <li><strong>Estrutura e Recursos:</strong> Cavernas naturais seladas por magia ancestral e runas de proteção indecifráveis.</li>
+            <li><strong>Uso Recomendado:</strong> Relíquias ancestrais, tesouros acumulados por gerações e artefatos de poder extremo.</li>
+            <li><strong>Público-Alvo:</strong> Famílias bruxas tradicionais, linhagens nobres e detentores de artefatos raros.</li>
+          </ul>
+        </article>
       </section>
     </main>
+
+    <footer style="text-align: center; padding: 2rem 1rem; border-top: 1px solid #D4AF37; margin-top: 3rem; color: #888; font-size: 0.85rem;">
+      <p>&copy; 2026 Banco Gringotts. Protegido por feitiços antigos e dragões.</p>
+    </footer>
   </body>
 </html>
