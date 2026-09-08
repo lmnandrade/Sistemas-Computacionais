@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil do Bruxo | Banco Gringotts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="perfil.css">
+  </head>
+  <body>
+
+    <!-- CABEÇALHO DO PAINEL -->
+    <header class="cabecalho-perfil">
+      <div class="container-cabecalho">
+        <a href="index.html" class="logo-link">
+          <span class="logo-texto">GRINGOTTS</span>
+        </a>
+        <nav class="nav-perfil">
+          <button type="button" id="btn-logout" class="btn-logout">Encerrar Sessão</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-perfil">
+      <div class="container-perfil">
+        
+        <!-- CARD DE BOAS-VINDAS / PERFIL DO BRUXO -->
+        <section class="card-usuario">
+          <div class="info-usuario">
+            <div class="avatar-bruxo">🧙‍♂️</div>
+            <div>
+              <h1 id="nome-bruxo">Bem-vindo, Bruxo</h1>
+              <p class="status-cofre">Status: <span class="destaque">Cofre Ativo e Protegido</span></p>
+              <p class="num-cofre">Nº do Cofre: <strong>687-A</strong></p>
+              <p class="tipo-cofre">Plano Atual: <strong id="plano-atual" class="destaque-plano">Cofres de Alta Segurança (Níveis 300 ao 600)</strong></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CARD DE SALDO DOS COFRES -->
+        <section class="card-saldo">
+          <h2>Saldo Armazenado</h2>
+          <div class="grid-moedas">
+            <div class="moeda-item galioes">
+              <span class="moeda-simbolo">🪙</span>
+              <span class="moeda-quantidade">1.450</span>
+              <span class="moeda-nome">Galeões de Ouro</span>
+            </div>
+            <div class="moeda-item sicles">
+              <span class="moeda-simbolo">🥈</span>
+              <span class="moeda-quantidade">320</span>
+              <span class="moeda-nome">Sicles de Prata</span>
+            </div>
+            <div class="moeda-item nuques">
+              <span class="moeda-simbolo">🥉</span>
+              <span class="moeda-quantidade">85</span>
+              <span class="moeda-nome">Nuques de Bronze</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- AÇÕES RÁPIDAS -->
+        <section class="card-acoes">
+          <h2>Serviços do Cofre</h2>
+          <div class="grid-acoes">
+            <a href="agendamento.html" class="btn-acao">
+              <span class="icone-acao">📅</span>
+              <span>Agendar Visita</span>
+            </a>
+            <button type="button" class="btn-acao" id="btn-extrato">
+              <span class="icone-acao">📜</span>
+              <span>Ver Extrato</span>
+            </button>
+            <button type="button" class="btn-acao" id="btn-transferencia">
+              <span class="icone-acao">🦉</span>
+              <span>Enviar Coruja</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- ÚLTIMAS TRANSAÇÕES -->
+        <section class="card-historico">
+          <h2>Últimas Movimentações</h2>
+          <ul class="lista-historico">
+            <li class="item-historico entrada">
+              <span class="descricao-historico">Depósito de Galeões</span>
+              <span class="data-historico">05/09/2026</span>
+              <span class="valor-historico">+ 200 Gál</span>
+            </li>
+            <li class="item-historico Saida">
+              <span class="descricao-historico">Taxa de Manutenção (Dragão)</span>
+              <span class="data-historico">01/09/2026</span>
+              <span class="valor-historico">- 15 Gál</span>
+            </li>
+            <li class="item-historico entrada">
+              <span class="descricao-historico">Câmbio Trouxa (Libras -> Galeões)</span>
+              <span class="data-historico">20/08/2026</span>
+              <span class="valor-historico">+ 50 Gál</span>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+    </main>
+
+    <script src="perfil.js" defer></script>
+  </body>
+</html>

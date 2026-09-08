@@ -1,275 +1,5 @@
-/* CARROSSEL / HERO SECTION*/
-.carrossel {
-  position: relative;
-  width: 100%;
-  height: calc(100vh - 80px);
-  min-height: 500px;
-  background-color: #000000;
-  overflow: hidden;
-  margin-bottom: 3rem;
-}
-
-.carousel-container {
-  width: 100%;
-  height: 100%;
-}
-
-.slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.6s ease-in-out;
-  display: flex;
-  align-items: center;
-  padding: 2rem 8%;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-}
-
-.slide.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Imagens de Fundo (Ajuste a pasta conforme seus arquivos no VS Code) */
-.slide:nth-child(1) {
-  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
-              url('balck_card.jpg');
-}
-
-.slide:nth-child(2) {
-  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
-              url('dinheiro\ \(1\).jpg');
-}
-
-.slide:nth-child(3) {
-  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
-              url('banco_gringotts\ \(1\).jpg');
-}
-
-/* Conteúdo dos Slides */
-.hero-conteudo {
-  max-width: 500px;
-  z-index: 2;
-}
-
-.hero-conteudo h2 {
-  font-size: 2.5rem;
-  color: #FFFFFF;
-  margin-bottom: 1rem;
-}
-
-.hero-conteudo p {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  color: #E0E0E0;
-}
-
-.btn-hero {
-  display: inline-block;
-  padding: 0.75rem 1.8rem;
-  border: 2px solid #D4AF37;
-  border-radius: 20px;
-  color: #FFFFFF;
-  text-decoration: none;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.btn-hero:hover {
-  background-color: #D4AF37;
-  color: #000000;
-}
-
-/* Controles do Carrossel (Setas e Bolinhas) */
-.carousel-controls {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  z-index: 10;
-}
-
-.btn-arrow {
-  background: none;
-  border: none;
-  color: #FFFFFF;
-  font-size: 1.2rem;
-  cursor: pointer;
-  padding: 0 0.5rem;
-  transition: transform 0.2s, color 0.2s;
-  line-height: 1;
-}
-
-.btn-arrow:hover {
-  color: #D4AF37;
-  transform: scale(1.3);
-}
-
-.dots-container {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border: 2px solid #FFFFFF;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.dot.active {
-  background-color: #D4AF37;
-  border-color: #D4AF37;
-  transform: scale(1.2);
-}
-
-/* ==========================================================================
-   SEÇÃO CÂMBIO TROUXA E TABELA
-   ========================================================================== */
-
-.secao-cambio {
-  max-width: 800px;
-  margin: 3rem auto;
-  padding: 0 1.5rem;
-}
-
-.secao-cambio h2 {
-  text-align: center;
-  color: #D4AF37;
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.tabela-cambio {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #111111;
-  border: 1px solid #D4AF37;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
-}
-
-.tabela-cambio th {
-  background-color: #D4AF37;
-  color: #000000;
-  padding: 0.8rem 1rem;
-  text-align: left;
-  font-family: 'Cinzel', serif;
-  font-weight: 800;
-  font-size: 0.95rem;
-}
-
-.tabela-cambio td {
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid #222222;
-  color: #FFFFFF;
-  font-size: 0.9rem;
-}
-
-.tabela-cambio tbody tr {
-  transition: background-color 0.2s ease;
-}
-
-.tabela-cambio tbody tr:hover {
-  background-color: #1a1a1ae5;
-  color: #F5EC82;
-}
-
-.tabela-cambio tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* ==========================================================================
-   GUIA MONETÁRIO BRUXO
-   ========================================================================== */
-
-.secao-cambio h3 {
-  color: #D4AF37;
-  border-top: 2px solid #D4AF37;
-  border-bottom: 2px solid #D4AF37;
-  padding: 0.8rem 0;
-  margin: 2.5rem 0 1.5rem 0;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.moedas {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.lista-moedas {
-  color: #FFFFFF;
-  list-style-type: square;
-  padding-left: 1.2rem;
-}
-
-.lista-moedas li {
-  margin-bottom: 0.8rem;
-  font-size: 1rem;
-}
-
-.figura-moeda {
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.figura-moeda img {
-  max-width: 180px;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-}
-
-/* ==========================================================================
-   RESPONSIVIDADE (MOBILE & TABLET)
-   ========================================================================== */
-
-@media (max-width: 850px) {
-  .carrossel {
-    height: calc(100vh - 130px);
-    min-height: 400px;
-  }
-
-  .slide {
-    padding: 2rem 5%;
-  }
-
-  .hero-conteudo h2 {
-    font-size: 1.8rem;
-  }
-
-  .hero-conteudo p {
-    font-size: 1rem;
-  }
-
-  .moedas {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .lista-moedas {
-    list-style-type: none;
-    padding-left: 0;
-  }
-}
 /* ==========================================
-   VARIÁVEIS E ESTILOS GLOBAIS DA HOME
+   VARIÁVEIS E ESTILOS GLOBAIS
    ========================================== */
 :root {
   --cor-fundo: #0a0a0c;
@@ -319,7 +49,146 @@ body {
 }
 
 /* ==========================================
-   1. ATALHOS RÁPIDOS
+   1. CARROSSEL / HERO SECTION
+   ========================================== */
+.carrossel {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 80px);
+  min-height: 500px;
+  background-color: #000000;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.carousel-container {
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding: 2rem 8%;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Imagens de Fundo */
+.slide:nth-child(1) {
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+              url('black_card.webp');
+}
+
+.slide:nth-child(2) {
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+              url('dinheiro (1).webp');
+}
+
+.slide:nth-child(3) {
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
+              url('banco_gringotts (1).webp');
+}
+
+.hero-conteudo {
+  max-width: 500px;
+  z-index: 2;
+}
+
+.hero-conteudo h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 2.5rem;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.hero-conteudo p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #E0E0E0;
+}
+
+.btn-hero {
+  display: inline-block;
+  padding: 0.75rem 1.8rem;
+  border: 2px solid var(--ouro-principal);
+  border-radius: 20px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+  background-color: var(--ouro-principal);
+  color: #000000;
+}
+
+/* Controles do Carrossel */
+.carousel-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.btn-arrow {
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  transition: transform 0.2s, color 0.2s;
+  line-height: 1;
+}
+
+.btn-arrow:hover {
+  color: var(--ouro-principal);
+  transform: scale(1.3);
+}
+
+.dots-container {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border: 2px solid #FFFFFF;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.dot.active {
+  background-color: var(--ouro-principal);
+  border-color: var(--ouro-principal);
+  transform: scale(1.2);
+}
+
+/* ==========================================
+   2. ATALHOS RÁPIDOS
    ========================================== */
 .atalhos-container {
   padding: 30px 20px;
@@ -372,7 +241,7 @@ body {
 }
 
 /* ==========================================
-   2. NOSSO COFRE
+   3. NOSSO COFRE
    ========================================== */
 .secao-cofres {
   padding: 80px 0;
@@ -438,7 +307,7 @@ body {
   margin-bottom: 25px;
 }
 
-/* Botões */
+/* Botões de Ação */
 .btn-primario, .btn-secundario {
   display: inline-block;
   text-align: center;
@@ -469,7 +338,7 @@ body {
 }
 
 /* ==========================================
-   3. CÂMBIO TROUXA
+   4. CÂMBIO TROUXA E SIMULADOR
    ========================================== */
 .secao-cambio {
   background-color: var(--cor-fundo-alt);
@@ -498,17 +367,44 @@ body {
   margin-bottom: 20px;
 }
 
-.lista-cotacao {
-  list-style: none;
-  padding: 0;
+.tabela-cambio {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--cor-card-fundo);
+  border: 1px solid var(--ouro-principal);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+  margin-bottom: 1.5rem;
 }
 
-.lista-cotacao li {
-  padding: 10px 0;
-  border-bottom: 1px dashed var(--borda-ouro);
+.tabela-cambio th {
+  background-color: var(--ouro-principal);
+  color: #000000;
+  padding: 0.8rem 1rem;
+  text-align: left;
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.tabela-cambio td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   color: var(--texto-claro);
+  font-size: 0.9rem;
 }
 
+.tabela-cambio tbody tr:hover {
+  background-color: rgba(212, 175, 55, 0.08);
+  color: var(--ouro-brilhante);
+}
+
+.tabela-cambio tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Simulador de Câmbio Form */
 .cambio-card-form {
   background-color: var(--cor-card-fundo);
   border: 1px solid var(--borda-ouro);
@@ -565,7 +461,41 @@ body {
   font-weight: bold;
 }
 
-/* 4. AGENDAMENTO E SEGURANÇA*/
+/* Guia Monetário */
+.moedas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.lista-moedas {
+  color: var(--texto-claro);
+  list-style-type: square;
+  padding-left: 1.2rem;
+}
+
+.lista-moedas li {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+.figura-moeda {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.figura-moeda img {
+  max-width: 180px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* ==========================================
+   5. AGENDAMENTO E SEGURANÇA
+   ========================================== */
 .secao-agendamento {
   padding: 60px 0;
 }
@@ -643,7 +573,9 @@ body {
   line-height: 1.5;
 }
 
-/* 5. RODAPÉ INSTITUCIONAL */
+/* ==========================================
+   6. RODAPÉ INSTITUCIONAL
+   ========================================== */
 .footer {
   background-color: #050507;
   border-top: 1px solid var(--borda-ouro);
@@ -702,12 +634,41 @@ body {
   font-size: 0.8rem;
 }
 
-/* RESPONSIVIDADE (MOBILE) */
-@media (max-width: 768px) {
+/* ==========================================
+   7. RESPONSIVIDADE
+   ========================================== */
+@media (max-width: 850px) {
+  .carrossel {
+    height: calc(100vh - 130px);
+    min-height: 400px;
+  }
+
+  .slide {
+    padding: 2rem 5%;
+  }
+
+  .hero-conteudo h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-conteudo p {
+    font-size: 1rem;
+  }
+
   .cambio-container {
     grid-template-columns: 1fr;
   }
-  
+
+  .moedas {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .lista-moedas {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
   .titulo-secao {
     font-size: 1.8rem;
   }

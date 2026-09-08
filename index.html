@@ -4,6 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>Gringotts Bank | O Banco do Mundo Bruxo</title>
+    
+    <!-- Preload do brasão para otimizar a descoberta e renderização -->
+    <link rel="preload" as="image" href="brasao_gringotts.webp" type="image/webp" fetchpriority="high">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -18,9 +22,12 @@
         <div class="logo-area">
           <figure class="logo-figure">
             <img
-              src="https://static.wikia.nocookie.net/harrypotter/images/e/e4/Bras%C3%A3o_de_Gringotes.png/revision/latest?cb=20180807195948&path-prefix=pt-br"
+              src="brasao_gringotts.webp"
               alt="Brasão Oficial do Banco Gringotts"
               class="logo-brasao"
+              width="60"
+              height="60"
+              fetchpriority="high"
             />
           </figure>
           <span class="logo-texto">GRINGOTTS BANK</span>
@@ -30,8 +37,7 @@
             <li><a href="#home" class="nav-link">Home</a></li>
             <li><a href="cofre.html" class="nav-link">Nosso Cofre</a></li>
             <li><a href="cotacao.html" class="nav-link">Câmbio Trouxa</a></li>
-            <li><a href="#agendamento" class="nav-link">Agendar Visita</a></li>
-            <li><a href="#seguranca" class="nav-link">Segurança</a></li>
+            <li><a href="agendamento.html" class="nav-link">Agendar Visita</a></li>
           </ul>
         </nav>
         <div class="user-action">
@@ -95,7 +101,7 @@
             <h3>Calculadora de Câmbio Trouxa</h3>
             <p>Galeões, Sicles e Nuques</p>
           </a>
-          <a href="#agendamento" class="atalho-card">
+          <a href="agendamento.html" class="atalho-card">
             <span class="atalho-icone">📜</span>
             <h3>Extrato em Papiro</h3>
             <p>Histórico de transações</p>
@@ -139,7 +145,7 @@
           <div class="agendamento-box">
             <h2>Agende seu Atendimento no Beco Diagonal</h2>
             <p>Evite filas no Salão Principal de Mármore. Reserve um horário.</p>
-            <a href="formularios.html" class="btn-agendar">Reservar Horário</a>
+            <a href="agendamento.html" class="btn-agendar">Reservar Horário</a>
           </div>
         </div>
       </section>
@@ -178,10 +184,9 @@
           <h4>Navegação</h4>
           <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="cofre.html">Nosso Cofre</a></li>
+            <li><a href="cofre.html">Nossos Cofres</a></li>
             <li><a href="cotacao.html">Calculadora de Câmbio Trouxa</a></li>
-            <li><a href="#agendamento">Agendar Visita</a></li>
-            <li><a href="#seguranca">Segurança</a></li>
+            <li><a href="agendamento.html">Agendar Visita</a></li>
           </ul>
         </div>
         <div class="footer-coluna">
