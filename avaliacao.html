@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avaliação Técnica do Conselho | Banco Gringotts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="avaliacao.css">
+  </head>
+  <body>
+
+    <!-- CABEÇALHO PADRÃO -->
+    <header class="header">
+      <div class="header-container">
+        <a href="index.html" class="logo-container">
+          <img src="logo.png" alt="Brasão de Gringotts" class="logo-img">
+          <span class="logo-texto">GRINGOTTS BANK</span>
+        </a>
+        <nav class="nav-menu">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="cofre.html" class="nav-link">Nosso Cofre</a>
+          <a href="dragoes.html" class="nav-link">Dragões</a>
+          <a href="cambio.html" class="nav-link">Câmbio Trouxa</a>
+          <a href="agendamento.html" class="nav-link">Agendar Visita</a>
+        </nav>
+        <a href="login.html" class="btn-conta">ACESSE SUA CONTA</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO SEÇÃO -->
+      <section class="hero-avaliacao">
+        <div class="hero-overlay-avaliacao">
+          <div class="container-hero-avaliacao">
+            <h1>AVALIAÇÃO TÉCNICA<br>DOS DUENDES</h1>
+            <p>Submeta relíquias, artefatos ou patrimônios para perícia oficial do Conselho de Gringotes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO DO FORMULÁRIO -->
+      <section class="secao-formulario">
+        <div class="container-avaliacao">
+          
+          <div class="card-formulario">
+            <h2>Requerimento de Perícia Patrimonial</h2>
+            <p class="instrucoes-form">Preencha os dados abaixo com precisão. Todas as solicitações são analisadas sob rigoroso sigilo bancário mágicamente selado.</p>
+
+            <form id="form-avaliacao" class="form-avaliacao">
+              
+              <div class="linha-dupla">
+                <div class="campo-grupo">
+                  <label for="nome-bruxo">Nome Completo do Titular</label>
+                  <input type="text" id="nome-bruxo" placeholder="Ex: Lúcio Malfoy" required>
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="registro-ministerio">Registro no Ministério da Magia</label>
+                  <input type="text" id="registro-ministerio" placeholder="Ex: MM-9941-A" required>
+                </div>
+              </div>
+
+              <div class="linha-dupla">
+                <div class="campo-grupo">
+                  <label for="tipo-ativo">Categoria do Ativo para Avaliação</label>
+                  <select id="tipo-ativo" required>
+                    <option value="" disabled selected>Selecione a categoria</option>
+                    <option value="artefato">Artefato Mágico Antigo</option>
+                    <option value="heranca">Jóias ou Herança Familiar</option>
+                    <option value="imovel">Propriedade ou Terras Bruxas</option>
+                    <option value="cofre-novo">Abertura de Cofre de Alta Segurança (Nível 600+)</option>
+                    <option value="outro">Outros Bens Mágicos</option>
+                  </select>
+                </div>
+
+                <div class="campo-grupo">
+                  <label for="valor-estimado">Estimativa Declarada (Galeões)</label>
+                  <input type="number" id="valor-estimado" min="1" placeholder="Ex: 5000" required>
+                </div>
+              </div>
+
+              <div class="campo-grupo">
+                <label for="metodo-resposta">Modalidade de Parecer Técnico</label>
+                <select id="metodo-resposta" required>
+                  <option value="coruja">Parecer via Coruja de Alta Prioridade</option>
+                  <option value="presencial">Audiência Presencial nas Instalações do Banco</option>
+                </select>
+              </div>
+
+              <div class="campo-grupo">
+                <label for="descricao-ativo">Descrição Detalhada do Objeto ou Patrimônio</label>
+                <textarea id="descricao-ativo" rows="5" placeholder="Informe a origem, feitiços conhecidos atrelados ao objeto e histórico de posse..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-submeter">Enviar Requerimento ao Conselho</button>
+            </form>
+
+            <div id="mensagem-resposta" class="mensagem-resposta escondido"></div>
+          </div>
+
+          <!-- REQUISITOS INSTITUCIONAIS -->
+          <div class="painel-requisitos">
+            <h3>Diretrizes de Avaliação</h3>
+            <ul class="lista-requisitos">
+              <li>
+                <strong>Taxa de Perícia:</strong> A taxa de auditoria técnica é fixa em 10 Galeões, deduzidos após a conclusão do laudo.
+              </li>
+              <li>
+                <strong>Autenticidade Mágica:</strong> Todos os itens enviados presencialmente passam pela Cascata do Ladrão para validação contra feitiços de disfarce.
+              </li>
+              <li>
+                <strong>Prazo do Conselho:</strong> O parecer oficial dos duendes seniores é expedido em até 48 horas úteis.
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <script src="avaliacao.js" defer></script>
+  </body>
+</html>

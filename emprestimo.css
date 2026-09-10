@@ -1,0 +1,227 @@
+/* ==========================================
+   ESTILOS - PÁGINA EMPRÉSTIMO EM GALEÕES
+   ========================================== */
+
+/* Seção Hero com Imagem de Fundo Mágica */
+.hero-emprestimo {
+  width: 100%;
+  min-height: 380px;
+  background: url('bg-cofre.jpg') center/cover no-repeat #000000;
+  position: relative;
+}
+
+.hero-overlay {
+  width: 100%;
+  min-height: 380px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.6) 60%, rgba(0, 0, 0, 0.85) 100%);
+  display: flex;
+  align-items: center;
+}
+
+.container-hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+}
+
+.container-hero h1 {
+  font-family: 'Cinzel', serif;
+  color: #FFFFFF;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 1px;
+  margin-bottom: 1.2rem;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+.container-hero p {
+  color: #E0E0E0;
+  font-size: 1.25rem;
+  font-weight: 400;
+  max-width: 600px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9);
+}
+
+/* Seção do Simulador */
+.secao-simulador {
+  background-color: #080808;
+  padding: 4rem 1.5rem;
+  color: #FFFFFF;
+}
+
+.container-simulador {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Card do Form */
+.card-simulador {
+  background-color: #121212;
+  border: 1px solid #D4AF37;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.card-simulador h2 {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.descricao-simulador {
+  color: #AAAAAA;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-emprestimo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo-grupo label {
+  color: #D4AF37;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.campo-grupo input,
+.campo-grupo select {
+  background-color: #000000;
+  border: 1px solid #333333;
+  color: #FFFFFF;
+  padding: 0.8rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+.campo-grupo input:focus,
+.campo-grupo select:focus {
+  outline: none;
+  border-color: #D4AF37;
+}
+
+/* Resumo do Cálculo */
+.resumo-calculo {
+  background-color: #080808;
+  border: 1px dashed #444444;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.linha-resumo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #CCCCCC;
+}
+
+.linha-resumo strong {
+  color: #81c784;
+  font-size: 1rem;
+}
+
+.btn-solicitar {
+  background-color: #D4AF37;
+  color: #000000;
+  border: none;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-solicitar:hover {
+  background-color: #f3c846;
+  transform: translateY(-2px);
+}
+
+/* Mensagens de Feedback */
+.escondido {
+  display: none !important;
+}
+
+.mensagem-resposta {
+  margin-top: 1.2rem;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.mensagem-resposta.sucesso {
+  background-color: #122818;
+  border: 1px solid #2e7d32;
+  color: #a5d6a7;
+}
+
+/* Vantagens Lateral */
+.info-condicoes h3 {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.lista-vantagens {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.lista-vantagens li {
+  background-color: #121212;
+  border-left: 3px solid #D4AF37;
+  padding: 1rem;
+  border-radius: 4px;
+  color: #CCCCCC;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.lista-vantagens strong {
+  color: #FFFFFF;
+}
+
+/* Responsividade */
+@media (max-width: 850px) {
+  .container-simulador {
+    grid-template-columns: 1fr;
+  }
+
+  .container-hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .container-hero p {
+    font-size: 1.05rem;
+  }
+}

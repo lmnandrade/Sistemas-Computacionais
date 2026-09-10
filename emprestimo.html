@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Empréstimo em Galeões | Banco Gringotts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="emprestimo.css">
+  </head>
+  <body>
+
+    <header class="header">
+      <div class="header-container">
+        <div class="logo-area">
+          <figure class="logo-figure">
+            <img
+              src="brasao_gringotts.webp"
+              alt="Brasão Oficial do Banco Gringotts"
+              class="logo-brasao"
+              width="60"
+              height="60"
+              fetchpriority="high"
+            />
+          </figure>
+          <span class="logo-texto">GRINGOTTS BANK</span>
+        </div>
+        <nav class="nav" aria-label="Navegação principal">
+          <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="cofre.html" class="nav-link">Nosso Cofre</a></li>
+            <li><a href="cotacao.html" class="nav-link">Câmbio Trouxa</a></li>
+            <li><a href="agendamento.html" class="nav-link">Agendar Visita</a></li>
+          </ul>
+        </nav>
+        <div class="user-action">
+          <a href="login.html" class="btn-acesso">ACESSE SUA CONTA</a>
+        </div>
+      </div>
+    </header>
+
+
+    <main>
+      <!-- HERO SEÇÃO (IGUAL À SUA IMAGEM) -->
+      <section class="hero-emprestimo">
+        <div class="hero-overlay">
+          <div class="container-hero">
+            <h1>EMPRÉSTIMO RÁPIDO<br>EM GALEÕES</h1>
+            <p>Taxas especiais para bruxos cadastrados no Ministério da Magia.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIMULADOR DE EMPRÉSTIMO -->
+      <section class="secao-simulador">
+        <div class="container-simulador">
+          
+          <div class="card-simulador">
+            <h2>Simulador de Crédito Bruxo</h2>
+            <p class="descricao-simulador">Calcule as parcelas em Galeões e solicite análise imediata pela gestão de duendes.</p>
+
+            <form id="form-emprestimo" class="form-emprestimo">
+              
+              <div class="campo-grupo">
+                <label for="registro-ministerio">Registro no Ministério da Magia (NIF/CPF Bruxo)</label>
+                <input type="text" id="registro-ministerio" placeholder="Ex: MM-8849-B" required>
+              </div>
+
+              <div class="campo-grupo">
+                <label for="valor-galeoes">Valor Desejado (Galeões de Ouro)</label>
+                <input type="number" id="valor-galeoes" min="50" max="50000" placeholder="Ex: 500" required>
+              </div>
+
+              <div class="campo-grupo">
+                <label for="prazo-pagamento">Prazo de Pagamento</label>
+                <select id="prazo-pagamento" required>
+                  <option value="6">6 luas (6 meses)</option>
+                  <option value="12" selected>12 luas (1 ano)</option>
+                  <option value="24">24 luas (2 anos)</option>
+                  <option value="36">36 luas (3 anos)</option>
+                </select>
+              </div>
+
+              <div class="campo-grupo">
+                <label for="garantia-cofre">Garantia Oferecida</label>
+                <select id="garantia-cofre" required>
+                  <option value="nenhuma">Sem garantia (Taxa padrão de 5%/ano)</option>
+                  <option value="cofre">Vinculação de Cofre em Gringotts (Taxa de 2.5%/ano)</option>
+                  <option value="artefato">Artefato Mágico Auditado (Taxa de 3%/ano)</option>
+                </select>
+              </div>
+
+              <!-- RESUMO DO CÁLCULO -->
+              <div class="resumo-calculo" id="resumo-calculo">
+                <div class="linha-resumo">
+                  <span>Valor das Parcelas:</span>
+                  <strong id="resultado-parcela">0 Gál / lua</strong>
+                </div>
+                <div class="linha-resumo">
+                  <span>Total a Devolver:</span>
+                  <strong id="resultado-total">0 Galeões</strong>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-solicitar">Solicitar Empréstimo via Coruja</button>
+            </form>
+
+            <div id="mensagem-resposta" class="mensagem-resposta escondido"></div>
+          </div>
+
+          <!-- DETALHES DAS CONDIÇÕES -->
+          <div class="info-condicoes">
+            <h3>Vantagens do Crédito Gringotts</h3>
+            <ul class="lista-vantagens">
+              <li><strong>Liberação Imediata:</strong> Transferência direta para seu cofre em até 1 hora após aprovação.</li>
+              <li><strong>Isenção para Servidores:</strong> Funcionários do Ministério da Magia possuem desconto de 1.5% na taxa de juros.</li>
+              <li><strong>Sem Análise Trouxa:</strong> Histórico de crédito do mundo não-mágico não afeta sua avaliação.</li>
+              <li><strong>Segurança Absoluta:</strong> Contrato selado com magia inquebrável para proteção de ambas as partes.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <script src="emprestimo.js" defer></script>
+  </body>
+</html>

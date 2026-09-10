@@ -1,0 +1,230 @@
+/* ==========================================
+   ESTILOS - PÁGINA AVALIAÇÃO DOS DUENDES
+   ========================================== */
+
+/* Hero */
+.hero-avaliacao {
+  width: 100%;
+  min-height: 380px;
+  background: url('bg-duendes.jpg') center/cover no-repeat #000000;
+  position: relative;
+}
+
+.hero-overlay-avaliacao {
+  width: 100%;
+  min-height: 380px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 60%, rgba(0, 0, 0, 0.9) 100%);
+  display: flex;
+  align-items: center;
+}
+
+.container-hero-avaliacao {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+}
+
+.container-hero-avaliacao h1 {
+  font-family: 'Cinzel', serif;
+  color: #FFFFFF;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: 1.5px;
+  margin-bottom: 1.2rem;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.container-hero-avaliacao p {
+  color: #E0E0E0;
+  font-size: 1.15rem;
+  max-width: 620px;
+  line-height: 1.5;
+}
+
+/* Seção Form */
+.secao-formulario {
+  background-color: #0a0a0a;
+  padding: 4.5rem 1.5rem;
+  color: #FFFFFF;
+}
+
+.container-avaliacao {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.card-formulario {
+  background-color: #121212;
+  border: 1px solid #282828;
+  border-top: 3px solid #D4AF37;
+  border-radius: 4px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.card-formulario h2 {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 1.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.instrucoes-form {
+  color: #A0A0A0;
+  font-size: 0.92rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.form-avaliacao {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.linha-dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.campo-grupo label {
+  color: #D4AF37;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.campo-grupo input,
+.campo-grupo select,
+.campo-grupo textarea {
+  background-color: #050505;
+  border: 1px solid #333333;
+  color: #FFFFFF;
+  padding: 0.85rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+}
+
+.campo-grupo input:focus,
+.campo-grupo select:focus,
+.campo-grupo textarea:focus {
+  outline: none;
+  border-color: #D4AF37;
+}
+
+.campo-grupo textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.btn-submeter {
+  background-color: #D4AF37;
+  color: #000000;
+  border: none;
+  padding: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-submeter:hover {
+  background-color: #e5be48;
+  transform: translateY(-1px);
+}
+
+/* Painel Lateral */
+.painel-requisitos {
+  background-color: #121212;
+  border: 1px solid #282828;
+  border-radius: 4px;
+  padding: 2rem;
+}
+
+.painel-requisitos h3 {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+}
+
+.lista-requisitos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.lista-requisitos li {
+  color: #CCCCCC;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border-bottom: 1px solid #222222;
+  padding-bottom: 1rem;
+}
+
+.lista-requisitos li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.lista-requisitos strong {
+  color: #FFFFFF;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* Feedback Status */
+.escondido {
+  display: none !important;
+}
+
+.mensagem-resposta {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  border-radius: 4px;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.mensagem-resposta.sucesso {
+  background-color: #0d2112;
+  border: 1px solid #2e7d32;
+  color: #a5d6a7;
+}
+
+/* Responsividade */
+@media (max-width: 850px) {
+  .container-avaliacao {
+    grid-template-columns: 1fr;
+  }
+
+  .linha-dupla {
+    grid-template-columns: 1fr;
+  }
+
+  .container-hero-avaliacao h1 {
+    font-size: 2.2rem;
+  }
+}

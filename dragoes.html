@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Segurança com Dragões | Banco Gringotts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="dragoes.css">
+  </head>
+  <body>
+
+   <header class="header">
+      <div class="header-container">
+        <div class="logo-area">
+          <figure class="logo-figure">
+            <img
+              src="brasao_gringotts.webp"
+              alt="Brasão Oficial do Banco Gringotts"
+              class="logo-brasao"
+              width="60"
+              height="60"
+              fetchpriority="high"
+            />
+          </figure>
+          <span class="logo-texto">GRINGOTTS BANK</span>
+        </div>
+        <nav class="nav" aria-label="Navegação principal">
+          <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="cofre.html" class="nav-link">Nosso Cofre</a></li>
+            <li><a href="cotacao.html" class="nav-link">Câmbio Trouxa</a></li>
+            <li><a href="agendamento.html" class="nav-link">Agendar Visita</a></li>
+          </ul>
+        </nav>
+        <div class="user-action">
+          <a href="login.html" class="btn-acesso">ACESSE SUA CONTA</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO SEÇÃO (Com imagem dragao.webp no fundo) -->
+      <section class="hero-dragao">
+        <div class="hero-overlay-dragao">
+          <div class="container-hero-dragao">
+            <h1>SEGURANÇA COM<br>DRAGÕES</h1>
+            <p>Proteção nível máximo para os cofres das famílias mais antigas.</p>
+            <a href="#guardioes" class="btn-conhecer-dragao">Conhecer Dragões</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- INFORMAÇÕES SOBRE OS GUARDIÕES -->
+      <section id="guardioes" class="secao-guardioes">
+        <div class="container-dragao-info">
+          <h2>Os Guardiões das Profundezas</h2>
+          <p class="subtitulo-dragao">
+            O Dragão de Gringotes (da espécie <strong>Barriga-de-Ferro Ucraniana</strong>) é utilizado para guardar os cofres de alta segurança no Banco Bruxo Gringotes, garantindo proteção inexpugnável para tesouros de alto valor.
+          </p>
+
+          <!-- BANNER COM A IMAGEM DO DRAGÃO -->
+          <div class="container-imagem-destaque">
+            <img src="dragao.webp" alt="Barriga-de-Ferro Ucraniano soltando fogo" class="img-dragao-fogo">
+          </div>
+
+          <!-- CARDS INSTITUCIONAIS -->
+          <div class="grid-dragao-recursos">
+            <div class="card-dragao">
+              <h3>Barriga-de-Ferro Ucraniana</h3>
+              <p>A maior e mais imponente espécie de dragão conhecida no mundo mágico. Utilizado na guarda direta de vários cofres de alta segurança nas profundezas de Gringotes.</p>
+            </div>
+
+            <div class="card-dragao">
+              <h3>Cascata do Ladrão</h3>
+              <p>Queda d'água mágica nos trilhos das profundezas que anula instantaneamente feitiços de disfarce, Poção Polisuco e ilusões de intrusos.</p>
+            </div>
+
+            <div class="card-dragao">
+              <h3>Clacadores de Proteção</h3>
+              <p>Instrumentos sonoros utilizados pelos duendes credenciados para subjugar e guiar os dragões durante acessos devidamente autorizados aos cofres.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROTOCOLO DE ACESSO -->
+      <section class="secao-protocolo">
+        <div class="container-dragao-info">
+          <h2>Protocolo de Acesso aos Cofres de Alta Segurança</h2>
+          
+          <ul class="lista-protocolo">
+            <li>
+              <span class="num-passo">01</span>
+              <div>
+                <strong>Condução Especializada:</strong> Apenas os duendes mais antigos conduzem os carrinhos até as áreas protegidas pelos dragões.
+              </div>
+            </li>
+            <li>
+              <span class="num-passo">02</span>
+              <div>
+                <strong>Passagem pela Cascata:</strong> Anulação de qualquer disfarce mágico antes da aproximação do perímetro do dragão.
+              </div>
+            </li>
+            <li>
+              <span class="num-passo">03</span>
+              <div>
+                <strong>Validação de Linhagem:</strong> Autenticação mágica direta nas portas seladas por runas ancestrais no Nível 600+.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <script src="dragoes.js" defer></script>
+  </body>
+</html>
