@@ -2,19 +2,12 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gringotts Bank | O Banco do Mundo Bruxo</title>
     
-    <!-- Preload do brasão para otimizar a descoberta e renderização -->
     <link rel="preload" as="image" href="brasao_gringotts.webp" type="image/webp" fetchpriority="high">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="formularios.css">
   </head>
   <body>
     <header class="header">
@@ -49,21 +42,62 @@
     <main>
       <section id="home" class="carrossel">
         <div class="carousel-container">
+          <!-- Slide 1 (LCP: Carregamento imediato) -->
           <div class="slide active">
+            <picture class="slide-bg">
+              <source srcset="black_card.webp" media="(max-width: 768px)" type="image/webp">
+              <img 
+                src="black_card.webp" 
+                alt="Novo Cartão Gringotts Black" 
+                width="1000"
+                height="500"
+                fetchpriority="high" 
+                decoding="sync"
+                class="img-slide-bg"
+              >
+            </picture>
             <div class="hero-conteudo">
               <h2>Novo Cartão Gringotts Black</h2>
               <p>Com acesso ilimitado aos cofres de alta segurança e câmbio direto em Galeões.</p>
               <a href="cartao.html" class="btn-hero">Saiba mais</a>
             </div>
           </div>
+
+          <!-- Slide 2 (Lazy loading) -->
           <div class="slide">
+            <picture class="slide-bg">
+              <source srcset="dinheiro (1).webp" media="(max-width: 768px)" type="image/webp">
+              <img 
+                src="dinheiro (1).webp" 
+                alt="Empréstimo Rápido em Galeões" 
+                width="1000"
+                height="500"
+                loading="lazy" 
+                decoding="async" 
+                class="img-slide-bg"
+              >
+            </picture>
             <div class="hero-conteudo">
               <h2>Empréstimo Rápido em Galeões</h2>
               <p>Taxas especiais para bruxos cadastrados no Ministério da Magia.</p>
-              <a href="emprestimo.html" class="btn-hero">Simular Câmbio</a>
+              <a href="emprestimo.html" class="btn-hero">Simular Empréstimo</a>
             </div>
           </div>
+
+          <!-- Slide 3 (Lazy loading) -->
           <div class="slide">
+            <picture class="slide-bg">
+              <source srcset="banco_gringotts (1).webp" media="(max-width: 768px)" type="image/webp">
+              <img 
+                src="banco_gringotts (1).webp" 
+                alt="Segurança com Dragões" 
+                width="1000"
+                height="500"
+                loading="lazy" 
+                decoding="async" 
+                class="img-slide-bg"
+              >
+            </picture>
             <div class="hero-conteudo">
               <h2>Segurança com Dragões</h2>
               <p>Proteção nível máximo para os cofres das famílias mais antigas.</p>
@@ -71,6 +105,7 @@
             </div>
           </div>
         </div>
+
         <div class="carousel-controls">
           <button class="btn-arrow prev-btn" aria-label="Slide anterior">&#10094;</button>
       
@@ -101,7 +136,7 @@
             <h3>Calculadora de Câmbio Trouxa</h3>
             <p>Galeões, Sicles e Nuques</p>
           </a>
-          <a href="agendamento.html" class="atalho-card">
+          <a href="login.html" class="atalho-card">
             <span class="atalho-icone">📜</span>
             <h3>Extrato em Papiro</h3>
             <p>Histórico de transações</p>
@@ -187,6 +222,7 @@
             <li><a href="cofre.html">Nossos Cofres</a></li>
             <li><a href="cotacao.html">Calculadora de Câmbio Trouxa</a></li>
             <li><a href="agendamento.html">Agendar Visita</a></li>
+            <li><a href="#seguranca">Segurança</a></li>
           </ul>
         </div>
         <div class="footer-coluna">

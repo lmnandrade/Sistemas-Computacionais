@@ -1,0 +1,170 @@
+/* ==========================================
+   CÂMBIO TROUXA, TABELA E SIMULADOR
+   ========================================== */
+.secao-cambio {
+  background-color: var(--cor-fundo-alt);
+  padding: 80px 0;
+  border-block: 1px solid var(--borda-ouro);
+}
+
+.cambio-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.cambio-texto h2 {
+  font-family: var(--fonte-titulo);
+  font-size: 2rem;
+  color: var(--ouro-principal);
+  margin-bottom: 15px;
+}
+
+.cambio-texto p {
+  color: var(--texto-mutado);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Tabela de Câmbio */
+.tabela-cambio {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--cor-card-fundo);
+  border: 1px solid var(--ouro-principal);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
+  margin-bottom: 1.5rem;
+}
+
+.tabela-cambio th, 
+.tabela-cambio td {
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+}
+
+.tabela-cambio th {
+  background-color: var(--ouro-principal);
+  color: #000;
+  text-align: left;
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+}
+
+.tabela-cambio td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tabela-cambio tbody tr:hover {
+  background-color: rgba(212, 175, 55, 0.08);
+  color: var(--ouro-brilhante);
+}
+
+.tabela-cambio tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Simulador e Formulário */
+.cambio-card-form {
+  background-color: var(--cor-card-fundo);
+  border: 1px solid var(--borda-ouro);
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.form-simulador h3 {
+  font-family: var(--fonte-titulo);
+  color: var(--ouro-brilhante);
+  margin-bottom: 20px;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.campo-grupo label {
+  font-size: 0.9rem;
+  color: var(--texto-mutado);
+}
+
+.campo-grupo input,
+.campo-grupo select {
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--borda-ouro);
+  padding: 12px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.resultado-simulacao {
+  background-color: var(--cor-fundo);
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.resultado-simulacao p {
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+  color: var(--texto-mutado);
+}
+
+.valor-resultado {
+  font-family: var(--fonte-titulo);
+  font-size: 1.2rem;
+  color: var(--ouro-principal);
+  font-weight: bold;
+}
+
+/* Guia Monetário (Moedas) */
+.moedas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.lista-moedas {
+  list-style-type: square;
+  padding-left: 1.2rem;
+}
+
+.lista-moedas li {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+.figura-moeda {
+  flex-shrink: 0;
+}
+
+.figura-moeda img {
+  max-width: 180px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Responsividade da Cotação */
+@media (max-width: 850px) {
+  .cambio-container {
+    grid-template-columns: 1fr;
+  }
+
+  .moedas {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .lista-moedas {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}

@@ -1,0 +1,226 @@
+/* ==========================================================================
+   ESTILOS DA PÁGINA DE SOLICITAÇÃO DE SEGUNDA VIA DE CHAVE
+   ========================================================================== */
+
+main {
+  background-color: #0d0d0d;
+  color: #f0f0f0;
+  min-height: 80vh;
+  padding-bottom: 3rem;
+}
+
+/* --- HERO SEÇÃO --- */
+.hero-avaliacao {
+  background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(13, 13, 13, 1)),
+              url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=1200') center/cover no-repeat;
+  padding: 4rem 1.5rem 3rem;
+  text-align: center;
+  border-bottom: 2px solid #c5a059;
+}
+
+.container-hero-avaliacao h1 {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  color: #e5c158;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.container-hero-avaliacao p {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  color: #cccccc;
+  line-height: 1.6;
+}
+
+/* --- SEÇÃO FORMULÁRIO E LAYOUT GRID --- */
+.secao-formulario {
+  padding: 3rem 1.5rem;
+}
+
+.container-avaliacao {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.card-formulario {
+  background-color: #171717;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-formulario h2 {
+  font-family: 'Cinzel', serif;
+  color: #e5c158;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.instrucoes-form {
+  color: #aaa;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* --- ESTRUTURA DOS CAMPOS DO FORMULÁRIO --- */
+.form-avaliacao {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.linha-dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.campo-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.campo-grupo label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #dddddd;
+  letter-spacing: 0.5px;
+}
+
+.campo-grupo input,
+.campo-grupo select,
+.campo-grupo textarea {
+  width: 100%;
+  background-color: #0a0a0a;
+  border: 1px solid #3d3d3d;
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.campo-grupo input:focus,
+.campo-grupo select:focus,
+.campo-grupo textarea:focus {
+  outline: none;
+  border-color: #c5a059;
+  box-shadow: 0 0 8px rgba(197, 160, 89, 0.3);
+}
+
+.campo-grupo select option {
+  background-color: #171717;
+  color: #ffffff;
+}
+
+.campo-grupo textarea {
+  resize: vertical;
+}
+
+/* --- BOTÃO DE SUBMISSÃO --- */
+.btn-submeter {
+  background: linear-gradient(135deg, #c5a059 0%, #9e7b32 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  margin-top: 1rem;
+}
+
+.btn-submeter:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.btn-submeter:active {
+  transform: translateY(0);
+}
+
+/* --- CAIXA DE MENSAGEM / FEEDBACK --- */
+.mensagem-resposta {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.mensagem-resposta.escondido {
+  display: none;
+}
+
+.mensagem-resposta.sucesso {
+  background-color: rgba(46, 125, 50, 0.2);
+  border: 1px solid #2e7d32;
+  color: #81c784;
+}
+
+.mensagem-resposta.erro {
+  background-color: rgba(198, 40, 40, 0.2);
+  border: 1px solid #c62828;
+  color: #e57373;
+}
+
+/* --- PAINEL DIREITO: PAINEL DE REQUISITOS --- */
+.painel-requisitos {
+  background-color: #141414;
+  border: 1px solid #2a2a2a;
+  border-left: 3px solid #c5a059;
+  border-radius: 6px;
+  padding: 2rem;
+}
+
+.painel-requisitos h3 {
+  font-family: 'Cinzel', serif;
+  color: #e5c158;
+  font-size: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.lista-requisitos {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.lista-requisitos li {
+  font-size: 0.9rem;
+  color: #bbbbbb;
+  line-height: 1.5;
+}
+
+.lista-requisitos strong {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 850px) {
+  .container-avaliacao {
+    grid-template-columns: 1fr;
+  }
+
+  .linha-dupla {
+    grid-template-columns: 1fr;
+  }
+}

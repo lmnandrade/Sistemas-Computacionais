@@ -5,15 +5,16 @@
 /* Hero */
 .hero-avaliacao {
   width: 100%;
-  min-height: 380px;
-  background: url('bg-duendes.jpg') center/cover no-repeat #000000;
+  min-height: 280px;
+  background-color: #050505;
+  border-bottom: 2px solid #D4AF37; /* Detalhe dourado de separação */
   position: relative;
 }
 
 .hero-overlay-avaliacao {
   width: 100%;
-  min-height: 380px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 60%, rgba(0, 0, 0, 0.9) 100%);
+  min-height: 280px;
+  background: linear-gradient(180deg, #121212 0%, #050505 100%);
   display: flex;
   align-items: center;
 }
@@ -26,22 +27,39 @@
 }
 
 .container-hero-avaliacao h1 {
-  font-family: 'Cinzel', serif;
-  color: #FFFFFF;
-  font-size: 3rem;
+  font-family: 'Cinzel Decorative', 'Cinzel', serif;
+  color: #D4AF37; /* Título em destaque dourado */
+  font-size: 2.8rem;
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: 1.5px;
-  margin-bottom: 1.2rem;
-  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
 
 .container-hero-avaliacao p {
   color: #E0E0E0;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   max-width: 620px;
+  margin: 0;
   line-height: 1.5;
 }
+
+/* Responsividade Mobile - Hero */
+@media (max-width: 768px) {
+  .hero-avaliacao,
+  .hero-overlay-avaliacao {
+    min-height: 220px;
+  }
+
+  .container-hero-avaliacao h1 {
+    font-size: 1.8rem;
+  }
+
+  .container-hero-avaliacao p {
+    font-size: 0.95rem;
+  }
+} /* <--- FECHO ADICIONADO AQUI PARA CORRIGIR O ERRO */
 
 /* Seção Form */
 .secao-formulario {
@@ -214,7 +232,7 @@
   color: #a5d6a7;
 }
 
-/* Responsividade */
+/* Responsividade Global */
 @media (max-width: 850px) {
   .container-avaliacao {
     grid-template-columns: 1fr;

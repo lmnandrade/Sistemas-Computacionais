@@ -9,8 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="global.css">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="cotacao.css">
+    <link rel="stylesheet" href="home.css">  
     <link rel="stylesheet" href="formularios.css">
+    <link rel="stylesheet" href="mobile.css">
   </head>
   <body>
     <header class="header">
@@ -18,9 +20,12 @@
         <div class="logo-area">
           <figure class="logo-figure">
             <img
-              src="https://static.wikia.nocookie.net/harrypotter/images/e/e4/Bras%C3%A3o_de_Gringotes.png/revision/latest?cb=20180807195948&path-prefix=pt-br"
+              src="brasao_gringotts.webp"
               alt="Brasão Oficial do Banco Gringotts"
               class="logo-brasao"
+              width="60"
+              height="60"
+              fetchpriority="high"
             />
           </figure>
           <span class="logo-texto">GRINGOTTS BANK</span>
@@ -29,9 +34,8 @@
           <ul>
             <li><a href="index.html" class="nav-link">Home</a></li>
             <li><a href="cofre.html" class="nav-link">Nosso Cofre</a></li>
-            <li><a href="cotacao.html" class="nav-link active">Câmbio Trouxa</a></li>
-            <li><a href="index.html#agendamento" class="nav-link">Agendar Visita</a></li>
-            <li><a href="index.html#seguranca" class="nav-link">Segurança</a></li>
+            <li><a href="cotacao.html" class="nav-link">Câmbio Trouxa</a></li>
+            <li><a href="agendamento.html" class="nav-link">Agendar Visita</a></li>
           </ul>
         </nav>
         <div class="user-action">
@@ -39,7 +43,6 @@
         </div>
       </div>
     </header>
-
     <main class="container" style="padding-top: 40px; padding-bottom: 60px;">
       <section id="cotacao" class="quote">
         <h2 class="titulo-secao">Câmbio Trouxa</h2>

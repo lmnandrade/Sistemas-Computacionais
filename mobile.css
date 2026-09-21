@@ -1,0 +1,110 @@
+/* ==========================================
+   5. RESPONSIVIDADE GLOBAL (TABLETS E CELULARES)
+   ========================================== */
+
+/* TABLETS E TELAS MÉDIAS (Menores que 992px) */
+@media (max-width: 992px) {
+  /* Hero: Ajusta altura mínima e escala da tipografia */
+  .hero-avaliacao,
+  .hero-overlay-avaliacao {
+    min-height: 320px;
+  }
+
+  .container-hero-avaliacao h1 {
+    font-size: 2.2rem;
+  }
+
+  /* Containers Grid: Converte layout de 2 colunas para coluna única */
+  .container-avaliacao {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  /* Formulários e Cards: Ajusta largura proporcional e espaçamento */
+  .secao-agendamento-form,
+  .card-formulario,
+  .painel-requisitos {
+    max-width: 90%;
+    padding: 2rem 1.5rem;
+  }
+
+  /* Footer: Transforma as 4 colunas em 2 colunas */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+/* SMARTPHONES (Menores que 768px) */
+@media (max-width: 768px) {
+  /* Hero: Carrega imagem otimizada para mobile (Performance LCP) */
+  .hero-avaliacao {
+    background-image: url('bg-duendes-mobile.webp');
+    min-height: 280px;
+  }
+
+  .container-hero-avaliacao h1 {
+    font-size: 1.8rem;
+    line-height: 1.25;
+  }
+
+  .container-hero-avaliacao p {
+    font-size: 1rem;
+  }
+
+  /* Header: Empilha a logo e o menu de navegação */
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  /* Linhas Duplas: Transforma campos lado a lado em pilha vertical */
+  .linha-dupla {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  /* Campos e Botões: Garante área de toque de 48px para Lighthouse Mobile */
+  .campo-grupo input,
+  .campo-grupo select,
+  .campo-grupo textarea,
+  .campo-input input,
+  .campo-input select,
+  .campo-input textarea,
+  .btn-submeter,
+  .btn-agendar,
+  .btn-voltar {
+    min-height: 48px;
+    font-size: 1rem; /* Previne o zoom automático indesejado no iOS Safari */
+  }
+
+  /* Botões de Ação: Expandem para largura total da tela */
+  .btn-submeter,
+  .btn-agendar,
+  .btn-voltar {
+    width: 100%;
+  }
+}
+
+/* PEQUENOS SMARTPHONES (Menores que 480px) */
+@media (max-width: 480px) {
+  /* Seções e Cards: Ajuste fino das margens internas para evitar estouro de tela */
+  .secao-formulario,
+  .secao-agendamento-form {
+    margin: 1rem 0.5rem;
+    padding: 1.2rem 1rem;
+  }
+
+  .card-formulario h2,
+  .agendamento-container h2 {
+    font-size: 1.35rem;
+  }
+
+  /* Footer: Transforma em coluna única e centraliza conteúdo */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+}

@@ -1,5 +1,119 @@
 /* ==========================================
-   VARIÁVEIS E ESTILOS GLOBAIS
+   RESET GLOBAL E TIPOGRAFIA
+   ========================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  background-color: #000;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cinzel Decorative', serif;
+  letter-spacing: 1px;
+  margin-bottom: 0.8rem;
+}
+
+.texto-pequeno {
+  font-size: 0.5rem;
+  opacity: 0.85;
+}
+
+/* ==========================================
+   CABEÇALHO E NAVEGAÇÃO
+   ========================================== */
+.header {
+  background-color: #000;
+  width: 100%;
+  border-bottom: 4px solid var(--ouro-principal, #d4af37);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo-area,
+.logo-figure {
+  display: flex;
+  align-items: center;
+}
+
+.logo-area {
+  gap: 0.75rem;
+}
+
+.logo-brasao {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-texto {
+  font-family: 'HarryPotter', 'Cinzel', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--ouro-principal, #d4af37);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--ouro-principal, #d4af37);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.2rem;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: #f5ec82;
+  border-bottom-color: #f5ec82;
+  outline: none;
+}
+
+.btn-acesso {
+  background-color: var(--ouro-principal, #d4af37);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  transition: filter 0.2s;
+}
+
+.btn-acesso:hover {
+  filter: brightness(1.15);
+}
+
+/* ==========================================
+   RESET E VARIÁVEIS GLOBAIS
    ========================================== */
 :root {
   --cor-fundo: #0a0a0c;
@@ -21,8 +135,6 @@ body {
   background-color: var(--cor-fundo);
   color: var(--texto-claro);
   font-family: var(--fonte-corpo);
-  margin: 0;
-  padding: 0;
 }
 
 .container {
@@ -56,31 +168,26 @@ body {
   width: 100%;
   height: calc(100vh - 80px);
   min-height: 500px;
-  background-color: #000000;
+  background-color: #000;
   overflow: hidden;
   margin-bottom: 3rem;
 }
 
 .carousel-container {
+  position: relative;
   width: 100%;
   height: 100%;
 }
 
 .slide {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.6s ease-in-out;
+  transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
   display: flex;
   align-items: center;
   padding: 2rem 8%;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
 }
 
 .slide.active {
@@ -88,23 +195,30 @@ body {
   visibility: visible;
 }
 
-/* Imagens de Fundo */
-.slide:nth-child(1) {
-  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
-              url('black_card.webp');
+.slide-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
-.slide:nth-child(2) {
-  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
-              url('dinheiro (1).webp');
+.slide-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65));
+  z-index: 1;
 }
 
-.slide:nth-child(3) {
-  background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.65)),
-              url('banco_gringotts (1).webp');
+.img-slide-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 .hero-conteudo {
+  position: relative;
   max-width: 500px;
   z-index: 2;
 }
@@ -112,14 +226,14 @@ body {
 .hero-conteudo h2 {
   font-family: var(--fonte-titulo);
   font-size: 2.5rem;
-  color: #FFFFFF;
+  color: #fff;
   margin-bottom: 1rem;
 }
 
 .hero-conteudo p {
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
-  color: #E0E0E0;
+  color: #e0e0e0;
 }
 
 .btn-hero {
@@ -127,7 +241,7 @@ body {
   padding: 0.75rem 1.8rem;
   border: 2px solid var(--ouro-principal);
   border-radius: 20px;
-  color: #FFFFFF;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease;
@@ -135,7 +249,7 @@ body {
 
 .btn-hero:hover {
   background-color: var(--ouro-principal);
-  color: #000000;
+  color: #000;
 }
 
 /* Controles do Carrossel */
@@ -153,12 +267,11 @@ body {
 .btn-arrow {
   background: none;
   border: none;
-  color: #FFFFFF;
+  color: #fff;
   font-size: 1.2rem;
   cursor: pointer;
   padding: 0 0.5rem;
   transition: transform 0.2s, color 0.2s;
-  line-height: 1;
 }
 
 .btn-arrow:hover {
@@ -175,7 +288,7 @@ body {
 .dot {
   width: 8px;
   height: 8px;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #fff;
   border-radius: 50%;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
@@ -231,13 +344,12 @@ body {
   font-family: var(--fonte-titulo);
   font-size: 1.1rem;
   color: var(--ouro-brilhante);
-  margin: 0 0 5px 0;
+  margin-bottom: 5px;
 }
 
 .atalho-card p {
   font-size: 0.85rem;
   color: var(--texto-mutado);
-  margin: 0;
 }
 
 /* ==========================================
@@ -290,7 +402,7 @@ body {
   font-family: var(--fonte-titulo);
   font-size: 1.4rem;
   color: var(--ouro-brilhante);
-  margin: 0 0 5px 0;
+  margin-bottom: 5px;
 }
 
 .cofre-nivel {
@@ -307,7 +419,6 @@ body {
   margin-bottom: 25px;
 }
 
-/* Botões de Ação */
 .btn-primario, .btn-secundario {
   display: inline-block;
   text-align: center;
@@ -338,163 +449,7 @@ body {
 }
 
 /* ==========================================
-   4. CÂMBIO TROUXA E SIMULADOR
-   ========================================== */
-.secao-cambio {
-  background-color: var(--cor-fundo-alt);
-  padding: 80px 0;
-  border-top: 1px solid var(--borda-ouro);
-  border-bottom: 1px solid var(--borda-ouro);
-}
-
-.cambio-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
-}
-
-.cambio-texto h2 {
-  font-family: var(--fonte-titulo);
-  font-size: 2rem;
-  color: var(--ouro-principal);
-  margin-bottom: 15px;
-}
-
-.cambio-texto p {
-  color: var(--texto-mutado);
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.tabela-cambio {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: var(--cor-card-fundo);
-  border: 1px solid var(--ouro-principal);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
-  margin-bottom: 1.5rem;
-}
-
-.tabela-cambio th {
-  background-color: var(--ouro-principal);
-  color: #000000;
-  padding: 0.8rem 1rem;
-  text-align: left;
-  font-family: var(--fonte-titulo);
-  font-weight: 800;
-  font-size: 0.95rem;
-}
-
-.tabela-cambio td {
-  padding: 0.8rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  color: var(--texto-claro);
-  font-size: 0.9rem;
-}
-
-.tabela-cambio tbody tr:hover {
-  background-color: rgba(212, 175, 55, 0.08);
-  color: var(--ouro-brilhante);
-}
-
-.tabela-cambio tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* Simulador de Câmbio Form */
-.cambio-card-form {
-  background-color: var(--cor-card-fundo);
-  border: 1px solid var(--borda-ouro);
-  padding: 30px;
-  border-radius: 12px;
-}
-
-.form-simulador h3 {
-  font-family: var(--fonte-titulo);
-  color: var(--ouro-brilhante);
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-
-.campo-grupo {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 20px;
-}
-
-.campo-grupo label {
-  font-size: 0.9rem;
-  color: var(--texto-mutado);
-}
-
-.campo-grupo input {
-  background-color: var(--cor-fundo);
-  border: 1px solid var(--borda-ouro);
-  padding: 12px;
-  border-radius: 6px;
-  color: #fff;
-  font-size: 1rem;
-}
-
-.resultado-simulacao {
-  background-color: var(--cor-fundo);
-  padding: 15px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.resultado-simulacao p {
-  margin: 0 0 5px 0;
-  font-size: 0.85rem;
-  color: var(--texto-mutado);
-}
-
-.valor-resultado {
-  font-family: var(--fonte-titulo);
-  font-size: 1.2rem;
-  color: var(--ouro-principal);
-  font-weight: bold;
-}
-
-/* Guia Monetário */
-.moedas {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.lista-moedas {
-  color: var(--texto-claro);
-  list-style-type: square;
-  padding-left: 1.2rem;
-}
-
-.lista-moedas li {
-  margin-bottom: 0.8rem;
-  font-size: 1rem;
-}
-
-.figura-moeda {
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.figura-moeda img {
-  max-width: 180px;
-  height: auto;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
-}
-
-/* ==========================================
-   5. AGENDAMENTO E SEGURANÇA
+   4. AGENDAMENTO E SEGURANÇA
    ========================================== */
 .secao-agendamento {
   padding: 60px 0;
@@ -574,12 +529,12 @@ body {
 }
 
 /* ==========================================
-   6. RODAPÉ INSTITUCIONAL
+   5. RODAPÉ INSTITUCIONAL
    ========================================== */
 .footer {
   background-color: #050507;
   border-top: 1px solid var(--borda-ouro);
-  padding: 60px 0 20px 0;
+  padding: 60px 0 20px;
 }
 
 .footer-container {
@@ -606,8 +561,6 @@ body {
 
 .footer-coluna ul {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .footer-coluna ul li {
@@ -635,9 +588,20 @@ body {
 }
 
 /* ==========================================
-   7. RESPONSIVIDADE
+   6. RESPONSIVIDADE (Geral)
    ========================================== */
 @media (max-width: 850px) {
+  .header-container {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
   .carrossel {
     height: calc(100vh - 130px);
     min-height: 400px;
@@ -655,21 +619,100 @@ body {
     font-size: 1rem;
   }
 
-  .cambio-container {
-    grid-template-columns: 1fr;
-  }
-
-  .moedas {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .lista-moedas {
-    list-style-type: none;
-    padding-left: 0;
-  }
-
   .titulo-secao {
     font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-avaliacao,
+  .hero-overlay-avaliacao {
+    min-height: 320px;
+  }
+
+  .container-hero-avaliacao h1 {
+    font-size: 2.2rem;
+  }
+
+  .container-avaliacao {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .secao-agendamento-form,
+  .card-formulario,
+  .painel-requisitos {
+    max-width: 90%;
+    padding: 2rem 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-avaliacao {
+    background-image: url('bg-duendes-mobile.webp');
+    min-height: 280px;
+  }
+
+  .container-hero-avaliacao h1 {
+    font-size: 1.8rem;
+    line-height: 1.25;
+  }
+
+  .container-hero-avaliacao p {
+    font-size: 1rem;
+  }
+
+  header {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .linha-dupla {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .campo-grupo input,
+  .campo-grupo select,
+  .campo-grupo textarea,
+  .campo-input input,
+  .campo-input select,
+  .campo-input textarea,
+  .btn-submeter,
+  .btn-agendar,
+  .btn-voltar {
+    min-height: 48px;
+    font-size: 1rem;
+  }
+
+  .btn-submeter,
+  .btn-agendar,
+  .btn-voltar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .secao-formulario,
+  .secao-agendamento-form {
+    margin: 1rem 0.5rem;
+    padding: 1.2rem 1rem;
+  }
+
+  .card-formulario h2,
+  .agendamento-container h2 {
+    font-size: 1.35rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
   }
 }
