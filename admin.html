@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Diretor - Banco Gringotts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="formularios.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="mobile.css">
+    <link rel="stylesheet" href="admin.css">
+  </head>
+  <body>
+    <main class="admin-container">
+      
+      <!-- Cabeçalho do Admin -->
+      <header class="admin-header">
+        <div class="admin-title">
+          <h1>Gringotts - Controle de Cofres</h1>
+          <p>Sessão Administrativa de Goblin: <strong id="nomeAdmin">A carregar...</strong></p>
+        </div>
+        <button id="btnLogout" class="btn-logout">Sair do Sistema</button>
+      </header>
+
+      <!-- Cards Informativos -->
+      <section class="cards-grid">
+        <div class="card-stat">
+          <h3>Status dos Feitiços</h3>
+          <div class="valor" style="color: #2ecc71;">Ativos (100%)</div>
+        </div>
+        <div class="card-stat">
+          <h3>Segurança do Dragão</h3>
+          <div class="valor" style="color: #f39c12;">Alerta Normal</div>
+        </div>
+        <div class="card-stat">
+          <h3>Nível de Permissão</h3>
+          <div class="valor" style="color: #d4af37;">Diretoria</div>
+        </div>
+      </section>
+
+      <!-- Tabela de Gestão de Bruxos -->
+      <section class="secao-tabela">
+        <h2>Última Conta Acessada na Sessão</h2>
+        <div class="tabela-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome Completo</th>
+                <th>E-mail</th>
+                <th>CBF</th>
+                <th>Nível de Acesso</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaUsuarios">
+              <!-- Preenchido via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <script src="admin.js?v=1"></script>
+  </body>
+</html>
