@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Hello, World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acesse sua Conta - Banco Gringotts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -18,20 +18,20 @@
       <section id="login" class="secao-login">
         <div class="login-container">
           <h2>Acesse sua Conta</h2>
-          <form action="/login" method="POST" class="form-login">
+          <form class="form-login">
             <div class="campo-input">
-              <label for="usuario">Bruxo / Usuário</label>
+              <label for="usuario">E-mail ou CBF</label>
               <input type="text" id="usuario" name="usuario" required />
             </div>
 
             <div class="campo-input">
-              <label for="senha">Chave de Acesso / Senha</label>
+              <label for="senha">Senha</label>
               <input type="password" id="senha" name="senha" required />
             </div>
 
             <button type="submit" class="btn-entrar">ENTRAR NO COFRE</button>
 
-            <!-- Ações Secundárias (Não sou cliente / Voltar) -->
+            <!-- Ações Secundárias -->
             <div class="acoes-login">
               <a href="cadastro.html" class="link-cadastro">Não sou cliente (Abrir Conta)</a>
               <a href="index.html" class="btn-voltar">Voltar</a>
@@ -40,5 +40,6 @@
         </div>
       </section>
     </main>
-    <script src="login.js" defer></script>
+    <script src="login.js?v=2" defer></script>
   </body>
+</html>
