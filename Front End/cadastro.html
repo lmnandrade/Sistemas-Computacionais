@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Hello, World!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abrir Conta - Banco Gringotts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
           <h2>Abrir Conta em Gringotts</h2>
           <p class="subtitulo">Preencha seus dados bruxos para solicitar a abertura do cofre.</p>
 
-          <form action="http://localhost:8080/api/cadastro" method="POST" class="form-cadastro">
+          <form id="formCadastro" class="form-cadastro">
             
             <!-- Nome Completo -->
             <div class="campo-input">
@@ -28,10 +28,18 @@
               <input type="text" id="nome" name="nomeCompleto" required />
             </div>
 
+            <!-- Família -->
             <div class="campo-input">
               <label for="familia">Família</label>
               <input type="text" id="familia" name="familia" placeholder="Ex: Dumbledore, Weasley, Malfoy..." required />
             </div>
+
+            <!-- E-mail de Acesso -->
+            <div class="campo-input">
+              <label for="email">E-mail (Acesso)</label>
+              <input type="email" id="email" name="email" placeholder="exemplo@gringotts.com" required />
+            </div>
+
             <!-- CBF e RG -->
             <div class="linha-dupla">
               <div class="campo-input">
@@ -69,6 +77,12 @@
               <input type="text" id="profissao" name="profissao" placeholder="Ex: Auror, Herbologista, Poções..." required />
             </div>
 
+            <!-- Campo de Senha Obrigatório -->
+            <div class="campo-input">
+              <label for="senha">Chave de Acesso / Senha</label>
+              <input type="password" id="senha" name="senha" placeholder="Crie uma senha segura" required />
+            </div>
+
             <!-- Botões -->
             <button type="submit" class="btn-entrar">SOLICITAR ABERTURA DE CONTA</button>
             
@@ -80,5 +94,6 @@
         </div>
       </section>
     </main>
-    <script src="cadastro.js"></script>
+    <script src="cadastro.js?v=2"></script>
   </body>
+</html>
