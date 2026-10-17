@@ -1,0 +1,79 @@
+/* Campos Genéricos de Formulário */
+.campo-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.campo-input label {
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.campo-input input,
+.campo-input select {
+  padding: 0.75rem;
+  background-color: #000000;
+  border: 1px solid #444444;
+  border-radius: 4px;
+  color: #FFFFFF;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.campo-input select {
+  cursor: pointer;
+}
+
+.campo-input input:focus,
+.campo-input select:focus {
+  border-color: #D4AF37;
+}
+
+/* Seção de Cadastro */
+.secao-cadastro {
+  max-width: 550px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #111111;
+  border: 2px solid #D4AF37;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+}
+
+.cadastro-container h2 {
+  text-align: center;
+  color: #D4AF37;
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.subtitulo {
+  text-align: center;
+  color: #CCCCCC;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-cadastro {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.linha-dupla {
+  display: flex;
+  gap: 1rem;
+}
+
+.linha-dupla .campo-input {
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .linha-dupla {
+    flex-direction: column;
+  }
+}

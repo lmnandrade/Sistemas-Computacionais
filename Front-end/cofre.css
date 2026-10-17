@@ -1,0 +1,149 @@
+/* 
+   ESTILOS DA SEÇÃO DE COFRES & ESPECIFICAÇÕES
+/* Container Principal das Seções */
+.secao-cambio {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+/* Títulos e Subtítulos Gerais */
+.secao-cambio h2 {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.secao-cambio h3 {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 1.6rem;
+  text-align: center;
+  border-top: 2px solid #D4AF37;
+  border-bottom: 2px solid #D4AF37;
+  padding: 0.8rem 0;
+  margin: 3rem 0 2rem 0;
+}
+
+.secao-cambio h4 {
+  color: #FFFFFF;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.texto-pequeno {
+  font-size: 0.85em;
+  color: #888888;
+  font-style: italic;
+}
+
+.secao-cambio p {
+  color: #CCCCCC;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Cards de Especificações Técnicas (Articles) */
+.detalhe-cofre-item {
+  background-color: #111111;
+  border: 1px solid #222222;
+  border-left: 4px solid #D4AF37;
+  border-radius: 0 8px 8px 0;
+  padding: 1.8rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.detalhe-cofre-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.15);
+  border-color: #333333;
+  border-left-color: #F5EC82;
+}
+
+.detalhe-cofre-item h4 {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 1.35rem;
+  text-align: left;
+  margin-bottom: 0.8rem;
+  font-weight: 800;
+}
+
+.detalhe-cofre-item p {
+  color: #E0E0E0;
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid #222222;
+  padding-bottom: 0.8rem;
+}
+
+/* Listas de Especificações */
+.detalhe-cofre-item ul {
+  list-style-type: square;
+  padding-left: 1.2rem;
+  color: #CCCCCC;
+}
+
+.detalhe-cofre-item li {
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.detalhe-cofre-item li strong {
+  color: #FFFFFF;
+}
+
+/* Sublistas Mágicas (Aninhadas) */
+.detalhe-cofre-item ul ul {
+  list-style-type: circle;
+  margin-top: 0.5rem;
+  margin-bottom: 0.3rem;
+  padding-left: 1.2rem;
+}
+
+.detalhe-cofre-item ul ul li {
+  margin-bottom: 0.4rem;
+  color: #BBBBBB;
+}
+
+/* Destaque para Nomes Mágicos (em) */
+.detalhe-cofre-item em {
+  color: #D4AF37;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (DISPOSITIVOS MÓVEIS)
+   ========================================================================== */
+
+@media (max-width: 600px) {
+  .secao-cambio {
+    padding: 0 1rem;
+    margin: 2rem auto;
+  }
+
+  .secao-cambio h2 {
+    font-size: 1.75rem;
+  }
+
+  .secao-cambio h3 {
+    font-size: 1.3rem;
+  }
+
+  .detalhe-cofre-item {
+    padding: 1.2rem;
+  }
+
+  .detalhe-cofre-item h4 {
+    font-size: 1.15rem;
+  }
+}

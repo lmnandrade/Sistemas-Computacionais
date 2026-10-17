@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gringotts Bank | O Banco do Mundo Bruxo</title>
+    
+    <link rel="preload" as="image" href="brasao_gringotts.webp" type="image/webp" fetchpriority="high">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-container">
+        <div class="logo-area">
+          <figure class="logo-figure">
+            <img
+              src="brasao_gringotts.webp"
+              alt="Brasão Oficial do Banco Gringotts"
+              class="logo-brasao"
+              width="60"
+              height="60"
+              fetchpriority="high"
+            />
+          </figure>
+          <span class="logo-texto">GRINGOTTS BANK</span>
+        </div>
+        <nav class="nav" aria-label="Navegação principal">
+          <ul>
+            <li><a href="#home" class="nav-link">Home</a></li>
+            <li><a href="cofre.html" class="nav-link">Nosso Cofre</a></li>
+            <li><a href="cotacao.html" class="nav-link">Câmbio Trouxa</a></li>
+            <li><a href="agendamento.html" class="nav-link">Agendar Visita</a></li>
+          </ul>
+        </nav>
+        <div class="user-action">
+          <a href="login.html" class="btn-acesso">ACESSE SUA CONTA</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="carrossel">
+        <div class="carousel-container">
+          <!-- Slide 1 (LCP: Carregamento imediato) -->
+          <div class="slide active">
+            <picture class="slide-bg">
+              <source srcset="black_card.webp" media="(max-width: 768px)" type="image/webp">
+              <img 
+                src="black_card.webp" 
+                alt="Novo Cartão Gringotts Black" 
+                width="1000"
+                height="500"
+                fetchpriority="high" 
+                decoding="sync"
+                class="img-slide-bg"
+              >
+            </picture>
+            <div class="hero-conteudo">
+              <h2>Novo Cartão Gringotts Black</h2>
+              <p>Com acesso ilimitado aos cofres de alta segurança e câmbio direto em Galeões.</p>
+              <a href="cartao.html" class="btn-hero">Saiba mais</a>
+            </div>
+          </div>
+
+          <!-- Slide 2 (Lazy loading) -->
+          <div class="slide">
+            <picture class="slide-bg">
+              <source srcset="dinheiro (1).webp" media="(max-width: 768px)" type="image/webp">
+              <img 
+                src="dinheiro (1).webp" 
+                alt="Empréstimo Rápido em Galeões" 
+                width="1000"
+                height="500"
+                loading="lazy" 
+                decoding="async" 
+                class="img-slide-bg"
+              >
+            </picture>
+            <div class="hero-conteudo">
+              <h2>Empréstimo Rápido em Galeões</h2>
+              <p>Taxas especiais para bruxos cadastrados no Ministério da Magia.</p>
+              <a href="emprestimo.html" class="btn-hero">Simular Empréstimo</a>
+            </div>
+          </div>
+
+          <!-- Slide 3 (Lazy loading) -->
+          <div class="slide">
+            <picture class="slide-bg">
+              <source srcset="banco_gringotts (1).webp" media="(max-width: 768px)" type="image/webp">
+              <img 
+                src="banco_gringotts (1).webp" 
+                alt="Segurança com Dragões" 
+                width="1000"
+                height="500"
+                loading="lazy" 
+                decoding="async" 
+                class="img-slide-bg"
+              >
+            </picture>
+            <div class="hero-conteudo">
+              <h2>Segurança com Dragões</h2>
+              <p>Proteção nível máximo para os cofres das famílias mais antigas.</p>
+              <a href="dragoes.html" class="btn-hero">Saiba Mais</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button class="btn-arrow prev-btn" aria-label="Slide anterior">&#10094;</button>
+      
+          <div class="dots-container">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+          <button class="btn-arrow next-btn" aria-label="Próximo slide">&#10095;</button>
+        </div>
+      </section>
+
+      <section class="atalhos-container">
+        <div class="atalhos-grid">
+          <a href="login.html" class="atalho-card">
+            <span class="atalho-icone">🦉</span>
+            <h3>Pix por Coruja</h3>
+            <p>Transferências instantâneas</p>
+          </a>
+          <a href="chave.html" class="atalho-card">
+            <span class="atalho-icone">🔑</span>
+            <h3>Chave do Cofre</h3>
+            <p>Solicitar segunda via</p>
+          </a>
+          <a href="cotacao.html#form-conversao" class="atalho-card">
+            <span class="atalho-icone">🪙</span>
+            <h3>Calculadora de Câmbio Trouxa</h3>
+            <p>Galeões, Sicles e Nuques</p>
+          </a>
+          <a href="login.html" class="atalho-card">
+            <span class="atalho-icone">📜</span>
+            <h3>Extrato em Papiro</h3>
+            <p>Histórico de transações</p>
+          </a>
+        </div>
+      </section>
+
+      <section id="resumo-cofres" class="secao-cofres">
+        <div class="container">
+          <h2 class="titulo-secao">Nossos Cofres Subterrâneos</h2>
+          <p class="subtitulo-secao">Armazenamento ultra-seguro gerido e protegido por duendes.</p>
+          
+          <div class="cofres-grid">
+            <article class="cofre-card">
+              <h3>Cofres Padronizados</h3>
+              <p class="cofre-nivel">Nível 1 ao 300</p>
+              <p>Ideal para estudantes de Hogwarts e transações do cotidiano no Beco Diagonal. Acesso via chave simples de latão.</p>
+              <a href="cofre.html#detalhes-padronizados" class="btn-secundario">Ver detalhes</a>
+            </article>
+
+            <article class="cofre-card destaque">
+              <span class="badge-recomendado">Mais Escolhido</span>
+              <h3>Cofres de Alta Segurança</h3>
+              <p class="cofre-nivel">Nível 300 ao 600</p>
+              <p>Acesso exclusivo por carrinho de alta velocidade. Trancados com feitiços de verificação de identidade por duendes.</p>
+              <a href="cofre.html#detalhes-alta-seguranca" class="btn-primario">Ver detalhes</a>
+            </article>
+
+            <article class="cofre-card">
+              <h3>Cofres das Antigas Famílias</h3>
+              <p class="cofre-nivel">Profundezas (Nível 600+)</p>
+              <p>Proteção máxima com Guardiões Dragões e a Cascata do Ladrão. Acesso apenas por convite ou herança.</p>
+              <a href="cofre.html#detalhes-antigas-familias" class="btn-secundario">Ver detalhes</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="agendamento" class="secao-agendamento">
+        <div class="container">
+          <div class="agendamento-box">
+            <h2>Agende seu Atendimento no Beco Diagonal</h2>
+            <p>Evite filas no Salão Principal de Mármore. Reserve um horário.</p>
+            <a href="agendamento.html" class="btn-agendar">Reservar Horário</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="seguranca" class="secao-seguranca">
+        <div class="container">
+          <h2 class="titulo-secao">Sua Segurança em Primeiro Lugar</h2>
+          <div class="seguranca-grid">
+            <div class="seguranca-card">
+              <div class="icone-seguranca">🛡️</div>
+              <h3>Cascata do Ladrão</h3>
+              <p>Nossas galerias possuem defesas aquáticas que anulam qualquer feitiço de disfarce ou Poção Polissuco.</p>
+            </div>
+            <div class="seguranca-card">
+              <div class="icone-seguranca">🐉</div>
+              <h3>Proteção por Dragão</h3>
+              <p>Os cofres das profundezas contam com a vigilância ininterrupta de dragões treinadas e amortecedores de impacto.</p>
+            </div>
+            <div class="seguranca-card">
+              <div class="icone-seguranca">📜</div>
+              <h3>Verificação por Duendes</h3>
+              <p>Apenas o toque biométrico dos duendes oficiais de Gringotts é capaz de desativar as portas metálicas mais antigas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-coluna">
+          <h4>Gringotts Bank</h4>
+          <p>O lugar mais seguro do mundo para guardar qualquer coisa — exceto talvez Hogwarts.</p>
+        </div>
+        <div class="footer-coluna">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="cofre.html">Nossos Cofres</a></li>
+            <li><a href="cotacao.html">Calculadora de Câmbio Trouxa</a></li>
+            <li><a href="agendamento.html">Agendar Visita</a></li>
+            <li><a href="#seguranca">Segurança</a></li>
+          </ul>
+        </div>
+        <div class="footer-coluna">
+          <h4>Atendimento</h4>
+          <p>Beco Diagonal, nº 1 - Londres</p>
+          <p>Atendimento por Coruja Expressa 24/7</p>
+          <p>Ouvidoria: Via Espelho Comunicador</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; Regulamento do Ministério da Magia. Todos os direitos reservados aos Duendes de Gringotts.</p>
+      </div>
+    </footer>
+
+    <script src="carrossel.js" defer></script>
+  </body>
+</html>

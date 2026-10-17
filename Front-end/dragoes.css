@@ -1,0 +1,203 @@
+/* ==========================================
+   ESTILOS - PÁGINA SEGURANÇA COM DRAGÕES
+   ========================================== */
+
+/* Hero com a imagem dragao.webp no fundo */
+.hero-dragao {
+  width: 100%;
+  min-height: 480px;
+  background: url('dragao.webp') center/cover no-repeat #000000;
+  position: relative;
+}
+
+.hero-overlay-dragao {
+  width: 100%;
+  min-height: 480px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.65) 55%, rgba(0, 0, 0, 0.85) 100%);
+  display: flex;
+  align-items: center;
+}
+
+.container-hero-dragao {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  width: 100%;
+}
+
+.container-hero-dragao h1 {
+  font-family: 'Cinzel', serif;
+  color: #FFFFFF;
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 2px;
+  margin-bottom: 1.2rem;
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+.container-hero-dragao p {
+  color: #E0E0E0;
+  font-size: 1.2rem;
+  max-width: 580px;
+  margin-bottom: 2.2rem;
+  line-height: 1.5;
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.9);
+}
+
+.btn-conhecer-dragao {
+  display: inline-block;
+  border: 2px solid #D4AF37;
+  background-color: transparent;
+  color: #FFFFFF;
+  padding: 0.85rem 2.2rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease;
+}
+
+.btn-conhecer-dragao:hover {
+  background-color: #D4AF37;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+/* Seção dos Guardiões */
+.secao-guardioes {
+  background-color: #0a0a0a;
+  padding: 4.5rem 1.5rem;
+  color: #FFFFFF;
+}
+
+.container-dragao-info {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.secao-guardioes h2,
+.secao-protocolo h2 {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+
+.subtitulo-dragao {
+  color: #AAAAAA;
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 2.5rem auto;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Container da Imagem de Destaque */
+.container-imagem-destaque {
+  width: 100%;
+  max-height: 420px;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid #333333;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.img-dragao-fogo {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Cards Institucionais */
+.grid-dragao-recursos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card-dragao {
+  background-color: #121212;
+  border: 1px solid #282828;
+  border-top: 3px solid #D4AF37;
+  border-radius: 4px;
+  padding: 2.2rem 1.8rem;
+  text-align: left;
+  transition: border-color 0.25s ease, transform 0.2s ease;
+}
+
+.card-dragao:hover {
+  border-color: #D4AF37;
+  transform: translateY(-3px);
+}
+
+.card-dragao h3 {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.card-dragao p {
+  color: #CCCCCC;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+/* Protocolo */
+.secao-protocolo {
+  background-color: #040404;
+  border-top: 1px solid #1a1a1a;
+  padding: 4.5rem 1.5rem;
+}
+
+.lista-protocolo {
+  list-style: none;
+  padding: 0;
+  margin: 2.5rem auto 0 auto;
+  max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.lista-protocolo li {
+  background-color: #101010;
+  border-left: 3px solid #D4AF37;
+  padding: 1.2rem 1.5rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  color: #CCCCCC;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.num-passo {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.lista-protocolo strong {
+  color: #FFFFFF;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container-hero-dragao h1 {
+    font-size: 2.3rem;
+  }
+
+  .container-hero-dragao p {
+    font-size: 1.05rem;
+  }
+}

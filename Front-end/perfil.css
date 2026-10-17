@@ -1,0 +1,260 @@
+/* ==========================================
+   ESTILOS EXCLUSIVOS - PERFIL GRINGOTTS (APP BANCO)
+   ========================================== */
+
+/* Cabeçalho */
+.cabecalho-perfil {
+  background-color: #111111;
+  border-bottom: 2px solid #D4AF37;
+  padding: 1rem 2rem;
+}
+
+.container-cabecalho {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-texto {
+  font-family: 'Cinzel', serif;
+  color: #D4AF37;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.btn-logout {
+  background-color: transparent;
+  border: 1px solid #c62828;
+  color: #ef9a9a;
+  padding: 0.5rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-logout:hover {
+  background-color: #c62828;
+  color: #FFFFFF;
+}
+
+/* Layout Principal */
+.main-perfil {
+  padding: 2rem 1rem;
+}
+
+.container-perfil {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Cards Gerais */
+.card-usuario,
+.card-saldo,
+.card-caixinhas,
+.card-acoes,
+.card-historico {
+  background-color: #111111;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.card-usuario {
+  border-color: #D4AF37;
+}
+
+.info-usuario {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.avatar-bruxo {
+  font-size: 2.8rem;
+  background-color: #222222;
+  padding: 0.6rem;
+  border-radius: 50%;
+  border: 1px solid #D4AF37;
+}
+
+.info-usuario h1 {
+  color: #D4AF37;
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.status-cofre, .num-cofre, .tipo-cofre {
+  color: #CCCCCC;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.destaque { color: #81c784; font-weight: 600; }
+.destaque-plano { color: #D4AF37; font-weight: 600; }
+
+/* Saldo & Header com Botão Olho 👁️ */
+.header-saldo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-saldo h2, .card-caixinhas h2, .card-acoes h2, .card-historico h2 {
+  color: #D4AF37;
+  font-size: 1.1rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-eye {
+  background: transparent;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.grid-moedas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.moeda-item {
+  background-color: #000000;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.moeda-simbolo { font-size: 1.8rem; }
+.moeda-quantidade { color: #FFFFFF; font-size: 1.4rem; font-weight: bold; }
+.moeda-nome { color: #888888; font-size: 0.8rem; }
+
+/* Cofrinhos Mágicos (Caixinhas) */
+.grid-caixinhas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.item-caixinha {
+  background-color: #000000;
+  border: 1px solid #222222;
+  border-radius: 8px;
+  padding: 1.2rem;
+}
+
+.caixinha-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.caixinha-icone { font-size: 1.5rem; }
+.tag-meta { background: #222; color: #aaa; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; }
+.item-caixinha h3 { color: #fff; font-size: 1rem; margin: 0 0 0.5rem 0; }
+.caixinha-valor { color: #D4AF37; font-size: 1.3rem; font-weight: bold; margin: 0; }
+.rendimento-tag { color: #2ecc71; font-size: 0.75rem; margin-top: 0.4rem; font-weight: 600; }
+
+/* Ações Rápidas */
+.grid-acoes {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.btn-acao {
+  flex: 1;
+  min-width: 180px;
+  background-color: #000000;
+  border: 1px solid #D4AF37;
+  color: #FFFFFF;
+  padding: 1rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-acao:hover {
+  background-color: #D4AF37;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+/* Histórico */
+.lista-historico {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.item-historico {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #000000;
+  border-radius: 4px;
+  border-left: 4px solid #444444;
+  font-size: 0.9rem;
+}
+
+.item-historico.ENTRADA { border-left-color: #2e7d32; }
+.item-historico.SAIDA { border-left-color: #c62828; }
+.descricao-historico { color: #FFFFFF; }
+.data-historico { color: #777777; font-size: 0.8rem; }
+.valor-historico { font-weight: bold; }
+.item-historico.ENTRADA .valor-historico { color: #81c784; }
+.item-historico.SAIDA .valor-historico { color: #ef9a9a; }
+
+/* Modal de Operação */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #111;
+  border: 1px solid #D4AF37;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%; max-width: 400px;
+}
+
+.modal-content h3 { color: #D4AF37; margin-top: 0; font-family: 'Cinzel', serif; }
+.modal-botoes { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.btn-confirmar { background: #D4AF37; color: #000; border: none; padding: 10px; flex: 1; font-weight: bold; cursor: pointer; border-radius: 4px; }
+.btn-cancelar { background: #333; color: #fff; border: none; padding: 10px; flex: 1; cursor: pointer; border-radius: 4px; }
