@@ -18,6 +18,7 @@ require_once __DIR__ . '/models/Usuario.php';
 require_once __DIR__ . '/models/Transacao.php';
 require_once __DIR__ . '/models/Logger.php';
 require_once __DIR__ . '/controllers/AuthController.php';
+require_once __DIR__ . '/models/Agendamento.php';
 
 $db = (new Database())->getConnection();
 $action = $_GET['action'] ?? '';
@@ -71,7 +72,7 @@ if ($action === 'cadastro') {
         http_response_code(500);
         echo json_encode(["erro" => "Falha ao processar a movimentação."]);
     }
-} elseif ($action === 'listar_usuarios') {
+    } elseif ($action === 'listar_usuarios') {
     // Procura todos os utilizadores da tabela para a sincronização real com o Painel Admin
     $stmt = $db->prepare("SELECT id, nome_completo, email, cbf, familia, profissao FROM usuarios ORDER BY id ASC");
     $stmt->execute();
@@ -82,6 +83,23 @@ if ($action === 'cadastro') {
         "sucesso" => true,
         "usuarios" => $usuarios
     ]);
+    } elseif ($action === 'agendar') {
+    $agendamentoModel = new Agendamento($db);
+
+    // Validação básica dos campos obrigatórios
+    if (empty($dados['nome']) || empty($dados['email']) || empty($dados['servico']) || empty($dados['data_visita']) || empty($dados['horario_visita'])) {
+        http_response_code(400);
+        echo json_encode(["erro" => "Preencha todos os campos obrigatórios para o agendamento."]);
+        exit();
+    }
+
+    if ($agendamentoModel->criar($dados)) {
+        http_response_code(201);
+        echo json_encode(["mensagem" => "Agendamento realizado com sucesso! Os Goblins aguardam sua visita."]);
+    } else {
+        http_response_code(500);
+        echo json_encode(["erro" => "Falha ao registrar agendamento na base de dados."]);
+    }
 } else {
     http_response_code(400);
     echo json_encode(["erro" => "Ação inválida."]);
