@@ -33,7 +33,6 @@ if ($action === 'cadastro') {
 } elseif ($action === 'get_perfil') {
     $usuario_id = $_GET['usuario_id'] ?? 0;
     
-    // Procura dados atualizados do utilizador
     $stmtUser = $db->prepare("SELECT id, nome_completo, email, cbf, galeoes, sicles, nuques FROM usuarios WHERE id = :id LIMIT 1");
     $stmtUser->bindParam(':id', $usuario_id);
     $stmtUser->execute();
@@ -72,6 +71,17 @@ if ($action === 'cadastro') {
         http_response_code(500);
         echo json_encode(["erro" => "Falha ao processar a movimentação."]);
     }
+} elseif ($action === 'listar_usuarios') {
+    // Procura todos os utilizadores da tabela para a sincronização real com o Painel Admin
+    $stmt = $db->prepare("SELECT id, nome_completo, email, cbf, familia, profissao FROM usuarios ORDER BY id ASC");
+    $stmt->execute();
+    $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    http_response_code(200);
+    echo json_encode([
+        "sucesso" => true,
+        "usuarios" => $usuarios
+    ]);
 } else {
     http_response_code(400);
     echo json_encode(["erro" => "Ação inválida."]);
