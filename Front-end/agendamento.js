@@ -1,79 +1,122 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector(".form-agendamento");
+  const form = document.getElementById("form-agendamento");
   const containerForm = document.getElementById("container-form");
   const containerSucesso = document.getElementById("container-sucesso");
   const mensagemConteudo = document.getElementById("mensagem-conteudo");
   const btnNovoAgendamento = document.getElementById("btn-novo-agendamento");
-  const campoData = document.getElementById("data");
-  const campoTelefone = document.getElementById("telefone");
+  const statusUsuarioDiv = document.getElementById("status-usuario-login");
 
-  // Configuração da data mínima (hoje)
-  const hoje = new Date();
-  const ano = hoje.getFullYear();
-  const mes = String(hoje.getMonth() + 1).padStart(2, "0");
-  const dia = String(hoje.getDate()).padStart(2, "0");
-  if (campoData) campoData.setAttribute("min", `${ano}-${mes}-${dia}`);
+  // Elementos do Formulário
+  const inputNome = document.getElementById("nome");
+  const inputEmail = document.getElementById("email");
+  const inputCofre = document.getElementById("cofre");
 
-  // Máscara para o telefone
-  if (campoTelefone) {
-    campoTelefone.addEventListener("input", (e) => {
-      let valor = e.target.value.replace(/\D/g, "");
-      if (valor.length > 11) valor = valor.slice(0, 11);
+  let usuarioLogado = null;
 
-      if (valor.length > 6) {
-        valor = `(${valor.slice(0, 2)}) ${valor.slice(2, 7)}-${valor.slice(7)}`;
-      } else if (valor.length > 2) {
-        valor = `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
-      } else if (valor.length > 0) {
-        valor = `(${valor}`;
+  // 1. Verifica se existe sessão ativa no localStorage
+  const dadosSessao = localStorage.getItem("usuarioLogado");
+
+  if (dadosSessao) {
+    try {
+      usuarioLogado = JSON.parse(dadosSessao);
+
+      // Preenchimento automático com dados da conta
+      if (inputNome && usuarioLogado.nome_completo) {
+        inputNome.value = usuarioLogado.nome_completo;
       }
-      e.target.value = valor;
-    });
+      if (inputEmail && usuarioLogado.email) {
+        inputEmail.value = usuarioLogado.email;
+      }
+      if (inputCofre && usuarioLogado.id) {
+        const numCofreCalculado = 600 + parseInt(usuarioLogado.id);
+        inputCofre.value = `Cofre ${numCofreCalculado}-A`;
+      }
+
+      // Exibe banner de boas-vindas
+      if (statusUsuarioDiv) {
+        statusUsuarioDiv.style.display = "block";
+        statusUsuarioDiv.innerHTML = `
+          ✨ Sessão identificada: <strong>${usuarioLogado.nome_completo || usuarioLogado.email}</strong>. 
+        `;
+      }
+    } catch (e) {
+      console.error("Erro ao ler sessão do utilizador:", e);
+    }
+  } else {
+    // Caso seja um visitante não cadastrado
+    if (statusUsuarioDiv) {
+      statusUsuarioDiv.style.display = "block";
+      statusUsuarioDiv.innerHTML = `
+        ⚡ Agendando como Visitante. Já tem conta no Banco? <a href="login.html" style="color: #D4AF37; font-weight: bold;">Faça Login aqui</a> para preenchimento automático.
+      `;
+    }
   }
 
-  // Submissão do Formulário
+  // 2. Submissão do formulário para o PHP via Fetch
   if (form) {
-    form.addEventListener("submit", (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const nome = document.getElementById("nome").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const servicoSelect = document.getElementById("servico");
-      const servicoTexto = servicoSelect.options[servicoSelect.selectedIndex].text;
-      const horario = document.getElementById("horario").value;
+      const dadosAgendamento = {
+        usuario_id: usuarioLogado ? usuarioLogado.id : null,
+        nome: inputNome.value.trim(),
+        email: inputEmail.value.trim(),
+        telefone: document.getElementById("telefone").value.trim(),
+        servico: document.getElementById("servico").value,
+        num_cofre: inputCofre.value.trim(),
+        data_visita: document.getElementById("data").value,
+        horario_visita: document.getElementById("horario").value,
+        observacoes: document.getElementById("observacoes").value.trim()
+      };
 
-      // Converte data de YYYY-MM-DD para DD/MM/YYYY
-      const [anoSel, mesSel, diaSel] = campoData.value.split("-");
-      const dataFormatada = `${diaSel}/${mesSel}/${anoSel}`;
+      try {
+        const response = await fetch("http://localhost/Sistemas-Computacionais/Back-end/api.php?action=agendar", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(dadosAgendamento)
+        });
 
-      // Validação de Domingo
-      const dataObjeto = new Date(anoSel, mesSel - 1, diaSel);
-      if (dataObjeto.getDay() === 0) {
-        alert("O Banco Gringotts não realiza atendimentos aos domingos. Por favor, escolha outro dia.");
-        return;
+        const resultado = await response.json();
+
+        if (response.ok) {
+          containerForm.classList.add("escondido");
+          containerSucesso.style.display = "block";
+
+          const dataFormatada = new Date(dadosAgendamento.data_visita + "T00:00:00").toLocaleDateString('pt-BR');
+
+          mensagemConteudo.innerHTML = `
+            <h3>📜 Agendamento Confirmado com Sucesso!</h3>
+            <p><strong>Sr(a). ${dadosAgendamento.nome}</strong>, sua reserva foi registrada pelos Goblins.</p>
+            <ul>
+              <li><strong>Serviço:</strong> ${dadosAgendamento.servico}</li>
+              <li><strong>Data:</strong> ${dataFormatada} às ${dadosAgendamento.horario_visita}</li>
+              <li><strong>Cofre Informado:</strong> ${dadosAgendamento.num_cofre || "Nenhum"}</li>
+              <li><strong>E-mail de Confirmação:</strong> ${dadosAgendamento.email}</li>
+            </ul>
+            <p><small>Por favor, apresente-se na recepção de mármore do Banco Gringotts 15 minutos antes do horário agendado.</small></p>
+          `;
+        } else {
+          alert("Erro no agendamento: " + (resultado.erro || "Falha de processamento."));
+        }
+      } catch (error) {
+        alert("Erro de comunicação com o servidor: " + error.message);
       }
-
-      // Preenche o bloco de sucesso
-      mensagemConteudo.innerHTML = `
-        📜 <strong>Agendamento Confirmado!</strong><br><br>
-        Prezado(a) <strong>${nome}</strong>, sua visita para <em>${servicoTexto}</em> foi reservada para o dia 
-        <strong>${dataFormatada}</strong> às <strong>${horario}h</strong>.<br><br>
-        🦉 Uma coruja com as instruções de acesso ao Salão Principal foi enviada para <u>${email}</u>.
-      `;
-
-      // Esconde o bloco do formulário e exibe o bloco de confirmação
-      containerForm.style.display = "none";
-      containerSucesso.style.display = "block";
-
-      form.reset();
     });
   }
 
-  // Evento do botão "Novo Agendamento"
+  // 3. Botão para fazer um novo agendamento
   if (btnNovoAgendamento) {
     btnNovoAgendamento.addEventListener("click", () => {
       containerSucesso.style.display = "none";
-      containerForm.style.display = "block";
+      containerForm.classList.remove("escondido");
+      form.reset();
+
+      // Recarrega autopreenchimento se o utilizador continuar logado
+      if (usuarioLogado) {
+        inputNome.value = usuarioLogado.nome_completo || "";
+        inputEmail.value = usuarioLogado.email || "";
+        inputCofre.value = usuarioLogado.id ? `Cofre ${600 + parseInt(usuarioLogado.id)}-A` : "";
+      }
     });
   }
 });

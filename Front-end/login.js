@@ -1,4 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // 1. VERIFICA SE JÁ EXISTE SESSÃO ATIVA
+  const dadosSessao = localStorage.getItem("usuarioLogado");
+  if (dadosSessao) {
+    try {
+      const usuario = JSON.parse(dadosSessao);
+      const emailUser = (usuario.email || "").toLowerCase();
+      const eAdmin = emailUser.endsWith("@gringotts.com") || usuario.perfil_id == 2;
+      
+      // Se já está logado, vai direto para a tela certa
+      window.location.href = eAdmin ? "admin.html" : "perfil.html";
+      return;
+    } catch (e) {
+      localStorage.removeItem("usuarioLogado");
+    }
+  }
+
+  // 2. ELEMENTOS DO FORMULÁRIO DE LOGIN
   const formLogin = document.querySelector(".form-login");
   const campoUsuario = document.getElementById("usuario");
   const campoSenha = document.getElementById("senha");

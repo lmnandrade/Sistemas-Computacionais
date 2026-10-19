@@ -175,3 +175,40 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   gap: 1.5rem;
   animation: surgirMensagem 0.3s ease-out;
 }
+/* Aviso de Login / Auto-preenchimento */
+.aviso-login-info {
+  background-color: #000000;
+  border: 1px solid #D4AF37;
+  color: #CCCCCC;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.mensagem-agendamento.sucesso {
+  background-color: #000000;
+  border: 1px solid #2ecc71;
+  padding: 1.5rem;
+  border-radius: 6px;
+  color: #FFFFFF;
+}
+
+.mensagem-agendamento h3 {
+  color: #2ecc71;
+  margin-top: 0;
+  font-family: 'Cinzel', serif;
+}
+
+.mensagem-agendamento ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.mensagem-agendamento li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #222222;
+  font-size: 0.9rem;
+}
