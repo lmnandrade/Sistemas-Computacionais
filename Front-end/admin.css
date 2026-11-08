@@ -1,303 +1,237 @@
 /* ==========================================
-   PAINEL DO GESTOR DE BANCO GRINGOTTS
+   ESTILOS PAINEL ADMINISTRATIVO (DIRECTORIA)
    ========================================== */
 
 .admin-container {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 0 15px;
+  max-width: 1250px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+/* NAVEGAÇÃO DE ABAS */
+.navegacao-abas-admin {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  gap: 0.5rem;
+  margin: 2rem 0 1rem 0;
+  border-bottom: 2px solid #333333;
+  overflow-x: auto;
+  padding-bottom: 2px;
 }
 
-/* Cards de Métricas Gerenciais */
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-}
-
-.card-stat {
-  background: #111111;
+.btn-aba-admin {
+  background-color: #111111;
+  color: #CCCCCC;
   border: 1px solid #333333;
-  border-radius: 8px;
-  padding: 18px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.card-stat:hover {
-  transform: translateY(-2px);
-  border-color: #d4af37;
-}
-
-.card-stat-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.card-stat h3 {
-  color: #888888;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  margin: 0;
-  letter-spacing: 0.5px;
-}
-
-.card-icone {
-  font-size: 1.2rem;
-}
-
-.card-stat .valor {
-  color: #ffffff;
-  font-size: 1.5rem;
-  font-weight: bold;
+  border-bottom: none;
+  padding: 0.8rem 1.4rem;
   font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
 }
 
-.card-subtexto {
-  color: #666666;
-  font-size: 0.75rem;
-  margin: 6px 0 0 0;
+.btn-aba-admin:hover {
+  background-color: #222222;
+  color: #D4AF37;
 }
 
-/* Tabela de Gestão e Seções */
-.secao-tabela,
-.secao-auditoria {
-  background: #111111;
+.btn-aba-admin.ativa {
+  background-color: #D4AF37;
+  color: #000000;
+  border-color: #D4AF37;
+  font-weight: 800;
+}
+
+/* ESTRUTURA DAS SEÇÕES DE TABELA */
+.secao-tabela {
+  background-color: #111111;
   border: 1px solid #333333;
   border-radius: 8px;
-  padding: 24px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-.header-tabela-acoes {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.secao-tabela h2,
-.secao-auditoria h2 {
-  color: #d4af37;
-  font-family: 'Cinzel', serif;
-  margin: 0 0 15px 0;
-  font-size: 1.2rem;
-}
-
-/* Filtros e Barra de Pesquisa */
-.ferramentas-busca {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.campo-busca input {
-  background: #000000;
-  border: 1px solid #444444;
-  color: #ffffff;
-  padding: 8px 12px;
-  border-radius: 4px;
-  width: 260px;
-  font-size: 0.85rem;
-}
-
-.campo-busca input:focus {
-  border-color: #d4af37;
-  outline: none;
-}
-
-.select-filtro {
-  background: #000000;
-  border: 1px solid #444444;
-  color: #ffffff;
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 0.85rem;
-}
-
-/* Tabela */
 .tabela-wrapper {
   overflow-x: auto;
+  margin-top: 1rem;
 }
 
-table {
+.tabela-wrapper table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  color: #dddddd;
 }
 
-th, td {
-  padding: 12px 14px;
+.tabela-wrapper th {
+  background-color: #000000;
+  color: #D4AF37;
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  padding: 0.9rem;
+  border-bottom: 2px solid #333333;
+}
+
+.tabela-wrapper td {
+  padding: 0.85rem;
   border-bottom: 1px solid #222222;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
+  color: #EEEEEE;
+  vertical-align: middle;
 }
 
-th {
-  background-color: #1a1a1a;
-  color: #d4af37;
-  font-family: 'Cinzel', serif;
+.tabela-wrapper tr:hover {
+  background-color: #181818;
 }
 
-tr:hover {
-  background-color: rgba(212, 175, 55, 0.05);
+.tabela-vazia {
+  text-align: center;
+  color: #777777;
+  padding: 2rem !important;
+  font-style: italic;
 }
 
-.cofre-numero {
-  font-family: 'Cinzel', serif;
-  font-weight: bold;
-  color: #d4af37;
-}
-
-/* Status das Contas */
+/* BADGES E STATUS PILLS */
 .status-pill {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: bold;
   display: inline-block;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
 .status-ativo {
-  background: rgba(46, 204, 113, 0.15);
+  background-color: rgba(46, 204, 113, 0.15);
   color: #2ecc71;
-  border: 1px solid rgba(46, 204, 113, 0.3);
+  border: 1px solid #2ecc71;
 }
 
 .status-inspecao {
-  background: rgba(241, 196, 15, 0.15);
+  background-color: rgba(241, 196, 15, 0.15);
   color: #f1c40f;
-  border: 1px solid rgba(241, 196, 15, 0.3);
+  border: 1px solid #f1c40f;
 }
 
 .status-bloqueado {
-  background: rgba(231, 76, 60, 0.15);
+  background-color: rgba(231, 76, 60, 0.15);
   color: #e74c3c;
-  border: 1px solid rgba(231, 76, 60, 0.3);
+  border: 1px solid #e74c3c;
+}
+
+/* SELETORES E BOTÕES DE AÇÃO NAS TABELAS */
+.select-status-tabela {
+  background-color: #000000;
+  color: #D4AF37;
+  border: 1px solid #444444;
+  padding: 0.4rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.select-status-tabela:focus {
+  border-color: #D4AF37;
+  outline: none;
 }
 
 .btn-acao-tabela {
-  background: #000000;
-  color: #d4af37;
-  border: 1px solid #d4af37;
-  padding: 5px 10px;
+  background-color: transparent;
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
+  padding: 0.35rem 0.7rem;
   border-radius: 4px;
-  cursor: pointer;
   font-size: 0.8rem;
-  transition: all 0.2s ease;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .btn-acao-tabela:hover {
-  background: #d4af37;
+  background-color: #D4AF37;
   color: #000000;
-  font-weight: bold;
 }
 
-/* Auditoria de Segurança */
-.lista-auditoria {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.destaque-servico {
+  color: #3498db;
+  font-weight: 600;
 }
 
-.item-log {
-  background: #000000;
-  border: 1px solid #222222;
-  padding: 12px 16px;
-  border-radius: 6px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85rem;
+.texto-dourado {
+  color: #D4AF37;
 }
 
-.log-hora {
-  color: #777777;
-  min-width: 60px;
-  font-weight: bold;
-}
-
-.log-desc {
-  color: #dddddd;
-  flex: 1;
-  padding: 0 15px;
-}
-
-.log-badge {
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-  font-weight: bold;
-}
-
-.badge-sucesso { background: #103b1e; color: #2ecc71; }
-.badge-info { background: #003366; color: #3399ff; }
-
-/* Modal */
-.modal-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex; justify-content: center; align-items: center;
-  z-index: 1000;
-}
-
-.modal-content.modal-admin {
-  background: #111111;
-  border: 1px solid #d4af37;
-  padding: 2rem;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 480px;
-}
-
+/* MODAL ADMINISTRATIVO */
 .linha-detalhe {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
+  padding: 0.6rem 0;
   border-bottom: 1px solid #222222;
-  color: #cccccc;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
-.linha-detalhe strong {
-  color: #d4af37;
+.linha-detalhe span {
+  color: #AAAAAA;
+}
+/* CARDS DE MÉTRICAS CLICÁVEIS */
+.card-clicavel {
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
 }
 
-.modal-botoes {
+.card-clicavel:hover {
+  transform: translateY(-4px);
+  border-color: #D4AF37 !important;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
+}
+
+.card-clicavel:active {
+  transform: translateY(0);
+}
+
+/* NAVEGAÇÃO DE ABAS REFORMULADA (PADRÃO DOURADO GRINGOTTS) */
+.navegacao-abas-admin {
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 2rem 0 1.5rem 0;
+  border-bottom: 2px solid #333333;
+  padding-bottom: 0.8rem;
 }
 
-.btn-confirmar {
-  background: #d4af37;
-  color: #000;
-  border: none;
-  padding: 10px;
-  flex: 1;
-  font-weight: bold;
+.btn-aba-admin {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: #111111;
+  color: #CCCCCC;
+  border: 1px solid #444444;
+  padding: 0.75rem 1.25rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 6px;
   cursor: pointer;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  outline: none;
 }
 
-.btn-cancelar {
-  background: #333;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  flex: 1;
-  cursor: pointer;
-  border-radius: 4px;
+.btn-aba-admin:hover {
+  background-color: #222222;
+  color: #D4AF37;
+  border-color: #D4AF37;
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.15);
+}
+
+.btn-aba-admin.ativa {
+  background-color: #D4AF37;
+  color: #000000;
+  border-color: #D4AF37;
+  font-weight: 800;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
 }

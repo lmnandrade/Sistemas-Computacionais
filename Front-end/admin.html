@@ -17,7 +17,7 @@
   </head>
   <body>
     
-    <!-- CABEÇALHO DO PAINEL (PADRONIZADO) -->
+    <!-- CABEÇALHO DO PAINEL -->
     <header class="cabecalho-perfil">
       <div class="container-cabecalho">
         <a href="index.html" class="logo-link">
@@ -43,47 +43,42 @@
         </div>
       </section>
 
-      <!-- MÉTRICAS DE GESTÃO E SEGURANÇA -->
+      <!-- MÉTRICAS DE GESTÃO E SEGURANÇA (CARDS CLICÁVEIS) -->
       <section class="cards-grid">
-        <div class="card-stat">
+        <div class="card-stat card-clicavel" data-aba="aba-usuarios">
           <div class="card-stat-header">
             <h3>Cofres sob Custódia</h3>
             <span class="card-icone">🗝️</span>
           </div>
           <div class="valor" id="totalCofres">--</div>
-          <p class="card-subtexto">Contas ativas no sistema</p>
         </div>
 
-        <div class="card-stat">
+        <div class="card-stat card-clicavel" data-aba="aba-agendamentos">
           <div class="card-stat-header">
             <h3>Visitas Agendadas</h3>
             <span class="card-icone">📅</span>
           </div>
-          <div class="valor" id="visitasPendentes" style="color: #3498db;">3 Pendentes</div>
-          <p class="card-subtexto">Aguardando escolta de Goblin</p>
+          <div class="valor" id="visitasPendentes" style="color: #3498db;">--</div>
         </div>
 
-        <div class="card-stat">
+        <div class="card-stat card-clicavel" data-aba="aba-chaves">
           <div class="card-stat-header">
-            <h3>Integridade do Dragão</h3>
-            <span class="card-icone">🐉</span>
+            <h3>Chaves Solicitadas</h3>
+            <span class="card-icone">🔑</span>
           </div>
-          <div class="valor" style="color: #2ecc71;">Alerta Verde</div>
-          <p class="card-subtexto">Grutas inferiores operacionais</p>
+          <div class="valor" id="chavesPendentes" style="color: #f1c40f;">--</div>
         </div>
 
-        <div class="card-stat">
+        <div class="card-stat card-clicavel" data-aba="aba-emprestimos">
           <div class="card-stat-header">
-            <h3>Tentativas Suspeitas</h3>
-            <span class="card-icone">🛡️</span>
+            <h3>Solicitações de Crédito</h3>
+            <span class="card-icone">📜</span>
           </div>
-          <div class="valor" style="color: #e74c3c;">0 Detectadas</div>
-          <p class="card-subtexto">Queda do Ladrão operacional</p>
+          <div class="valor" id="solicitacoesCredito" style="color: #e74c3c;">--</div>
         </div>
       </section>
-
-      <!-- TABELA DE GESTÃO OPERACIONAL DE COFRES -->
-      <section class="secao-tabela">
+      <!-- ABA 1: COFRES E USUÁRIOS -->
+      <section id="aba-usuarios" class="conteudo-aba-admin secao-tabela">
         <div class="header-tabela-acoes">
           <h2>Controle de Cofres e Permissões de Acesso</h2>
           
@@ -108,12 +103,114 @@
                 <th>Titular do Cofre</th>
                 <th>E-mail do Bruxo</th>
                 <th>Nível de Segurança</th>
+                <th>CBF</th>
                 <th>Status Operacional</th>
-                <th>Última Atividade</th>
                 <th>Ações de Gestão</th>
               </tr>
             </thead>
             <tbody id="tabelaUsuarios">
+              <!-- Preenchido via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ABA 2: AGENDAMENTOS -->
+      <section id="aba-agendamentos" class="conteudo-aba-admin secao-tabela" style="display: none;">
+        <div class="header-tabela-acoes">
+          <h2>Agendamentos de Visitas aos Cofres</h2>
+        </div>
+        <div class="tabela-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Protocolo</th>
+                <th>Nome do Visitante</th>
+                <th>Contato</th>
+                <th>Serviço Solicitado</th>
+                <th>Data & Horário</th>
+                <th>Status</th>
+                <th>Gerenciar Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaAgendamentos">
+              <!-- Preenchido via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ABA 3: CHAVES -->
+      <section id="aba-chaves" class="conteudo-aba-admin secao-tabela" style="display: none;">
+        <div class="header-tabela-acoes">
+          <h2>Solicitações de Segunda Via e Reativação de Chaves</h2>
+        </div>
+        <div class="tabela-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Titular / Cofre</th>
+                <th>Reg. Ministério</th>
+                <th>Motivo</th>
+                <th>Tipo de Chave</th>
+                <th>Retirada</th>
+                <th>Status</th>
+                <th>Gerenciar Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaChaves">
+              <!-- Preenchido via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ABA 4: EMPRÉSTIMOS -->
+      <section id="aba-emprestimos" class="conteudo-aba-admin secao-tabela" style="display: none;">
+        <div class="header-tabela-acoes">
+          <h2>Propostas de Empréstimo em Galeões</h2>
+        </div>
+        <div class="tabela-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Protocolo</th>
+                <th>Solicitante</th>
+                <th>Reg. Ministério</th>
+                <th>Valor Solicitado</th>
+                <th>Prazo</th>
+                <th>Garantia Oferecida</th>
+                <th>Status</th>
+                <th>Gerenciar Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaEmprestimos">
+              <!-- Preenchido via admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ABA 5: CARTÕES BLACK -->
+      <section id="aba-cartoes" class="conteudo-aba-admin secao-tabela" style="display: none;">
+        <div class="header-tabela-acoes">
+          <h2>Avaliações de Elegibilidade para Cartão Black</h2>
+        </div>
+        <div class="tabela-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Nome do Bruxo</th>
+                <th>Reg. Ministério</th>
+                <th>Critério / Patrimônio</th>
+                <th>Data Pedido</th>
+                <th>Status</th>
+                <th>Gerenciar Status</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaCartoes">
               <!-- Preenchido via admin.js -->
             </tbody>
           </table>
@@ -158,6 +255,6 @@
       </div>
     </div>
 
-    <script src="admin.js?v=4"></script>
+    <script src="admin.js?v=6"></script>
   </body>
 </html>

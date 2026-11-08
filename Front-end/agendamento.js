@@ -6,21 +6,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnNovoAgendamento = document.getElementById("btn-novo-agendamento");
   const statusUsuarioDiv = document.getElementById("status-usuario-login");
 
-  // Elementos do Formulário
   const inputNome = document.getElementById("nome");
   const inputEmail = document.getElementById("email");
   const inputCofre = document.getElementById("cofre");
 
   let usuarioLogado = null;
-
-  // 1. Verifica se existe sessão ativa no localStorage
   const dadosSessao = localStorage.getItem("usuarioLogado");
 
   if (dadosSessao) {
     try {
       usuarioLogado = JSON.parse(dadosSessao);
 
-      // Preenchimento automático com dados da conta
       if (inputNome && usuarioLogado.nome_completo) {
         inputNome.value = usuarioLogado.nome_completo;
       }
@@ -32,27 +28,18 @@ document.addEventListener("DOMContentLoaded", () => {
         inputCofre.value = `Cofre ${numCofreCalculado}-A`;
       }
 
-      // Exibe banner de boas-vindas
       if (statusUsuarioDiv) {
         statusUsuarioDiv.style.display = "block";
-        statusUsuarioDiv.innerHTML = `
-          ✨ Sessão identificada: <strong>${usuarioLogado.nome_completo || usuarioLogado.email}</strong>. 
-        `;
+        statusUsuarioDiv.innerHTML = `✨ Sessão identificada: <strong>${usuarioLogado.nome_completo || usuarioLogado.email}</strong>.`;
       }
     } catch (e) {
       console.error("Erro ao ler sessão do utilizador:", e);
     }
-  } else {
-    // Caso seja um visitante não cadastrado
-    if (statusUsuarioDiv) {
-      statusUsuarioDiv.style.display = "block";
-      statusUsuarioDiv.innerHTML = `
-        ⚡ Agendando como Visitante. Já tem conta no Banco? <a href="login.html" style="color: #D4AF37; font-weight: bold;">Faça Login aqui</a> para preenchimento automático.
-      `;
-    }
+  } else if (statusUsuarioDiv) {
+    statusUsuarioDiv.style.display = "block";
+    statusUsuarioDiv.innerHTML = `⚡ Agendando como Visitante. Já tem conta no Banco? <a href="login.html" style="color: #D4AF37; font-weight: bold;">Faça Login aqui</a> para preenchimento automático.`;
   }
 
-  // 2. Submissão do formulário para o PHP via Fetch
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -70,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       };
 
       try {
-        const response = await fetch("http://localhost/Sistemas-Computacionais/Back-end/api.php?action=agendar", {
+        const response = await fetch("../api.php?action=agendar", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(dadosAgendamento)
@@ -79,22 +66,24 @@ document.addEventListener("DOMContentLoaded", () => {
         const resultado = await response.json();
 
         if (response.ok) {
-          containerForm.classList.add("escondido");
-          containerSucesso.style.display = "block";
+          if (containerForm) containerForm.classList.add("escondido");
+          if (containerSucesso) containerSucesso.style.display = "block";
 
           const dataFormatada = new Date(dadosAgendamento.data_visita + "T00:00:00").toLocaleDateString('pt-BR');
 
-          mensagemConteudo.innerHTML = `
-            <h3>📜 Agendamento Confirmado com Sucesso!</h3>
-            <p><strong>Sr(a). ${dadosAgendamento.nome}</strong>, sua reserva foi registrada pelos Goblins.</p>
-            <ul>
-              <li><strong>Serviço:</strong> ${dadosAgendamento.servico}</li>
-              <li><strong>Data:</strong> ${dataFormatada} às ${dadosAgendamento.horario_visita}</li>
-              <li><strong>Cofre Informado:</strong> ${dadosAgendamento.num_cofre || "Nenhum"}</li>
-              <li><strong>E-mail de Confirmação:</strong> ${dadosAgendamento.email}</li>
-            </ul>
-            <p><small>Por favor, apresente-se na recepção de mármore do Banco Gringotts 15 minutos antes do horário agendado.</small></p>
-          `;
+          if (mensagemConteudo) {
+            mensagemConteudo.innerHTML = `
+              <h3>📜 Agendamento Confirmado com Sucesso!</h3>
+              <p><strong>Sr(a). ${dadosAgendamento.nome}</strong>, sua reserva foi registrada pelos Goblins.</p>
+              <ul>
+                <li><strong>Serviço:</strong> ${dadosAgendamento.servico}</li>
+                <li><strong>Data:</strong> ${dataFormatada} às ${dadosAgendamento.horario_visita}</li>
+                <li><strong>Cofre Informado:</strong> ${dadosAgendamento.num_cofre || "Nenhum"}</li>
+                <li><strong>E-mail de Confirmação:</strong> ${dadosAgendamento.email}</li>
+              </ul>
+              <p><small>Por favor, apresente-se na recepção de mármore do Banco Gringotts 15 minutos antes do horário agendado.</small></p>
+            `;
+          }
         } else {
           alert("Erro no agendamento: " + (resultado.erro || "Falha de processamento."));
         }
@@ -104,18 +93,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Botão para fazer um novo agendamento
   if (btnNovoAgendamento) {
     btnNovoAgendamento.addEventListener("click", () => {
-      containerSucesso.style.display = "none";
-      containerForm.classList.remove("escondido");
+      if (containerSucesso) containerSucesso.style.display = "none";
+      if (containerForm) containerForm.classList.remove("escondido");
       form.reset();
 
-      // Recarrega autopreenchimento se o utilizador continuar logado
       if (usuarioLogado) {
-        inputNome.value = usuarioLogado.nome_completo || "";
-        inputEmail.value = usuarioLogado.email || "";
-        inputCofre.value = usuarioLogado.id ? `Cofre ${600 + parseInt(usuarioLogado.id)}-A` : "";
+        if (inputNome) inputNome.value = usuarioLogado.nome_completo || "";
+        if (inputEmail) inputEmail.value = usuarioLogado.email || "";
+        if (inputCofre) inputCofre.value = usuarioLogado.id ? `Cofre ${600 + parseInt(usuarioLogado.id)}-A` : "";
       }
     });
   }
