@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ==========================================
-  // 1. RECUPERAÇÃO DA SESSÃO DO USUÁRIO
+  // 1. RECUPERAÇÃO DA SESSÃO DO USUÁRIO & TOKEN JWT
   // ==========================================
   let usuarioLogado = null;
   const dadosSessao = localStorage.getItem("usuarioLogado");
+  const token = localStorage.getItem("tokenGringotts");
 
   if (dadosSessao) {
     try {
@@ -13,7 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // Helper de URL compatível com Live Server (porta 5500) e Apache
   function obterUrlApi(action) {
+    if (window.location.port === "5500" || window.location.hostname === "127.0.0.1") {
+      return `http://localhost/Sistemas-Computacionais/Back-end/api.php?action=${action}`;
+    }
     return window.location.pathname.includes("/Front-end/")
       ? `../Back-end/api.php?action=${action}`
       : `Back-end/api.php?action=${action}`;
@@ -61,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (btnSolicitar) {
     btnSolicitar.addEventListener("click", (e) => {
-      if (!usuarioLogado) {
+      if (!usuarioLogado || !token) {
         const confirmar = confirm("Você precisa estar autenticado no sistema Gringotts para solicitar a avaliação dos Duendes. Deseja fazer login agora?");
         if (confirmar) {
           e.preventDefault();
@@ -102,7 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      if (!usuarioLogado || !usuarioLogado.id) {
+      const tokenAtual = localStorage.getItem("tokenGringotts");
+      if (!usuarioLogado || !usuarioLogado.id || !tokenAtual) {
         exibirMensagem(
           "Você precisa estar logado para solicitar a avaliação do Cartão Black. <a href='login.html' style='color:#D4AF37; font-weight:bold;'>Faça Login aqui</a>.",
           "erro"
@@ -128,7 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const response = await fetch(obterUrlApi("solicitar_cartao"), {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${tokenAtual}`
+          },
           body: JSON.stringify(payload)
         });
 
@@ -147,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const mensagemSucesso = 
             `<strong>REQUERIMENTO PROTOCOLADO SOB Nº ${protocolo}</strong><br><br>` +
             `Prezado(a) <strong>${nome}</strong> (Reg. <em>${registro}</em>), a sua solicitação de perícia para a categoria ` +
-            `<strong>"${tipoTexto}"</strong> foi recebida e gravada com sucesso pelo Banco Gringottes.<br><br>` +
+            `<strong>"${tipoTexto}"</strong> foi recebida e gravada com sucesso pelo Banco Gringotts.<br><br>` +
             `O prazo estimado para o laudo formal é de até 48 horas úteis.`;
 
           exibirMensagem(mensagemSucesso, "sucesso");
@@ -157,7 +166,11 @@ document.addEventListener("DOMContentLoaded", () => {
             inputNome.value = usuarioLogado.nome_completo || "";
           }
         } else {
-          exibirMensagem(`Erro na solicitação: ${resultado.erro || "Não foi possível registrar seu pedido."}`, "erro");
+          if (response.status === 401) {
+            exibirMensagem("Sessão expirada. Por favor, <a href='login.html' style='color:#D4AF37;'>faça login novamente</a>.", "erro");
+          } else {
+            exibirMensagem(`Erro na solicitação: ${resultado.erro || "Não foi possível registrar seu pedido."}`, "erro");
+          }
         }
       } catch (error) {
         console.error("Erro na comunicação com a API:", error);

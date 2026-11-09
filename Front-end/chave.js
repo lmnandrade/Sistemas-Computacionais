@@ -4,9 +4,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!formChave) return;
 
-  // 1. Preenchimento automático se houver sessão ativa
+  // Helper de URL compatível com Live Server (porta 5500) e Apache
+  function obterUrlApi(action) {
+    if (window.location.port === "5500" || window.location.hostname === "127.0.0.1") {
+      return `http://localhost/Sistemas-Computacionais/Back-end/api.php?action=${action}`;
+    }
+    return window.location.pathname.includes("/Front-end/")
+      ? `../Back-end/api.php?action=${action}`
+      : `Back-end/api.php?action=${action}`;
+  }
+
+  // 1. Preenchimento automático e verificação de sessão/token JWT
   let usuarioLogado = null;
   const dadosSessao = localStorage.getItem("usuarioLogado");
+  const token = localStorage.getItem("tokenGringotts");
 
   if (dadosSessao) {
     try {
@@ -25,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 2. Submissão do formulário com integração à API
+  // 2. Submissão do formulário com integração à API e JWT
   formChave.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -54,10 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Validação de autenticação
-    if (!usuarioLogado || !usuarioLogado.id) {
+    // Validação de autenticação via JWT
+    const tokenAtual = localStorage.getItem("tokenGringotts");
+    if (!tokenAtual || !usuarioLogado || !usuarioLogado.id) {
       exibirMensagem(
-        "Você precisa estar logado para solicitar a 2ª via da chave. <a href='login.html' style='color:#D4AF37; font-weight:bold;'>Faça Login aqui</a>.",
+        "Sessão não identificada ou expirada. <a href='login.html' style='color:#D4AF37; font-weight:bold;'>Faça Login aqui</a> para solicitar a 2ª via da chave.",
         "erro"
       );
       return;
@@ -82,9 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     try {
-      const response = await fetch("http://localhost/Sistemas-Computacionais/Back-end/api.php?action=solicitar_chave", {
+      const response = await fetch(obterUrlApi("solicitar_chave"), {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${tokenAtual}`
+        },
         body: JSON.stringify(payload)
       });
 
@@ -110,7 +125,11 @@ document.addEventListener("DOMContentLoaded", () => {
           if (document.getElementById("numero-cofre")) document.getElementById("numero-cofre").value = 600 + parseInt(usuarioLogado.id);
         }
       } else {
-        exibirMensagem(`Erro na solicitação: ${resultado.erro || "Falha ao registrar o pedido com os duendes."}`, "erro");
+        if (response.status === 401) {
+          exibirMensagem("Sessão expirada. Por favor, <a href='login.html' style='color:#D4AF37;'>faça login novamente</a>.", "erro");
+        } else {
+          exibirMensagem(`Erro na solicitação: ${resultado.erro || "Falha ao registrar o pedido com os duendes."}`, "erro");
+        }
       }
     } catch (error) {
       console.error("Erro na comunicação com o servidor:", error);

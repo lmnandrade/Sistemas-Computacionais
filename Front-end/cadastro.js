@@ -3,6 +3,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const inputCbf = document.getElementById('cbf');
   const inputRg = document.getElementById('rg');
 
+  // Função para validar regras de complexidade da senha
+  function validarComplexidadeSenha(senha) {
+    if (senha.length <= 6) {
+      return "A senha deve ter mais de 6 caracteres.";
+    }
+    if (!/[0-9]/.test(senha)) {
+      return "A senha deve conter pelo menos um número.";
+    }
+    if (!/[a-z]/.test(senha)) {
+      return "A senha deve conter pelo menos uma letra minúscula.";
+    }
+    if (!/[A-Z]/.test(senha)) {
+      return "A senha deve conter pelo menos uma letra maiúscula.";
+    }
+    if (!/[^A-Za-z0-9]/.test(senha)) {
+      return "A senha deve conter pelo menos um caractere especial (ex: @, #, $, !, %).";
+    }
+    return null; // Senha válida
+  }
+
   if (inputCbf) {
     inputCbf.addEventListener('input', (e) => {
       let v = e.target.value.replace(/\D/g, '');
@@ -30,6 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
 
       const inputSenha = document.getElementById('senha');
+      const senha = inputSenha ? inputSenha.value : '';
+
+      // Validação de complexidade da senha
+      const erroSenha = validarComplexidadeSenha(senha);
+      if (erroSenha) {
+        alert('Senha inválida: ' + erroSenha);
+        if (inputSenha) inputSenha.focus();
+        return;
+      }
 
       const dadosFormulario = {
         nomeCompleto: document.getElementById('nome')?.value || '',
@@ -40,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dataNascimento: document.getElementById('dataNascimento')?.value || '',
         sexo: document.getElementById('sexo')?.value || '',
         profissao: document.getElementById('profissao')?.value || '',
-        senha: inputSenha ? inputSenha.value : ''
+        senha: senha
       };
 
       try {

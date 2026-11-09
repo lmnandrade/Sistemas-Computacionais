@@ -1,0 +1,109 @@
+body {
+    background-color: #0d0d0d;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 30px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #161616;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.15);
+}
+
+h1 {
+    color: #d4af37;
+    text-align: center;
+    margin-top: 0;
+    font-family: Georgia, serif;
+    letter-spacing: 1px;
+}
+
+.summary-box {
+    background: #222;
+    border: 1px solid #333;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.summary-item h3 {
+    margin: 0 0 5px 0;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.summary-item span {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.test-card {
+    background: #1c1c1c;
+    border-left: 5px solid #444;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.test-card.passed {
+    border-left-color: #2ecc71;
+}
+
+.test-card.failed {
+    border-left-color: #e74c3c;
+}
+
+.test-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.test-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.test-desc {
+    margin: 8px 0 5px 0;
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge.passed {
+    background: #2ecc71;
+    color: #000;
+}
+
+.badge.failed {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.test-detail {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #bbb;
+    background: #111;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: monospace;
+}

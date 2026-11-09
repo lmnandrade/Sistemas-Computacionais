@@ -85,12 +85,19 @@
   padding: 0.6rem;
   border-radius: 50%;
   border: 1px solid #D4AF37;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .info-usuario h1 {
   color: #D4AF37;
   font-size: 1.5rem;
   margin-bottom: 0.3rem;
+  font-family: 'Cinzel', serif;
 }
 
 .status-cofre, .num-cofre, .tipo-cofre {
@@ -101,6 +108,100 @@
 
 .destaque { color: #81c784; font-weight: 600; }
 .destaque-plano { color: #D4AF37; font-weight: 600; }
+
+/* Botão Genérico Dourado */
+.btn-dourado {
+  background: linear-gradient(135deg, #D4AF37, #AA7C11);
+  color: #000000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-dourado:hover {
+  background: linear-gradient(135deg, #FFE57F, #D4AF37);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+}
+
+/* ==========================================
+   ESTILIZAÇÃO DA SEÇÃO: CATEGORIA / NÍVEL DO COFRE
+   ========================================== */
+
+.bloco-tipo-cofre {
+  margin-top: 20px;
+  border-top: 1px solid #333333;
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label-tipo-cofre {
+  color: #D4AF37;
+  font-weight: bold;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Dropdown / Select em Preto e Dourado */
+#seletorTipoCofre,
+.select-filtro {
+  width: 100%;
+  background-color: #000000;
+  color: #D4AF37;
+  border: 1px solid #D4AF37;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#seletorTipoCofre:focus,
+.select-filtro:focus {
+  border-color: #FFE57F;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+#seletorTipoCofre option {
+  background-color: #111111;
+  color: #FFFFFF;
+  padding: 10px;
+}
+
+/* Botão de Atualizar Categoria */
+#btnSalvarTipoCofre {
+  width: 100%;
+  background: linear-gradient(135deg, #D4AF37, #AA7C11);
+  color: #000000;
+  border: none;
+  padding: 11px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#btnSalvarTipoCofre:hover {
+  background: linear-gradient(135deg, #FFE57F, #D4AF37);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+#btnSalvarTipoCofre:active {
+  transform: translateY(0);
+}
 
 /* Saldo & Header com Botão Olho 👁️ */
 .header-saldo {
@@ -116,6 +217,7 @@
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: 'Cinzel', serif;
 }
 
 .btn-eye {
@@ -237,17 +339,17 @@
 .item-historico.ENTRADA .valor-historico { color: #81c784; }
 .item-historico.SAIDA .valor-historico { color: #ef9a9a; }
 
-/* Modal de Operação */
+/* Modal de Operação / Edição */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   display: flex; justify-content: center; align-items: center;
   z-index: 1000;
 }
 
 .modal-content {
-  background: #111;
+  background: #111111;
   border: 1px solid #D4AF37;
   padding: 2rem;
   border-radius: 8px;

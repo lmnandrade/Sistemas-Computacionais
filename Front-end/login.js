@@ -1,17 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. VERIFICA SE JÁ EXISTE SESSÃO ATIVA
+  // Validação estritamente baseada no sufixo de e-mail @gringotts.com
+  function verificarSeEhAdmin(usuario) {
+    if (!usuario || !usuario.email) return false;
+    const emailUser = String(usuario.email).trim().toLowerCase();
+    return emailUser.endsWith("@gringotts.com");
+  }
+
+  function obterUrlApi(action) {
+    if (window.location.port === "5500" || window.location.hostname === "127.0.0.1") {
+      return `http://localhost/Sistemas-Computacionais/Back-end/api.php?action=${action}`;
+    }
+    return window.location.pathname.includes("/Front-end/")
+      ? `../Back-end/api.php?action=${action}`
+      : `Back-end/api.php?action=${action}`;
+  }
+
+  // 1. VERIFICA SE JÁ EXISTE SESSÃO E TOKEN ATIVOS
   const dadosSessao = localStorage.getItem("usuarioLogado");
-  if (dadosSessao) {
+  const token = localStorage.getItem("tokenGringotts");
+
+  if (dadosSessao && token) {
     try {
       const usuario = JSON.parse(dadosSessao);
-      const emailUser = (usuario.email || "").toLowerCase();
-      const eAdmin = emailUser.endsWith("@gringotts.com") || usuario.perfil_id == 2;
-      
-      // Se já está logado, vai direto para a tela certa
+      const eAdmin = verificarSeEhAdmin(usuario);
+
       window.location.href = eAdmin ? "admin.html" : "perfil.html";
       return;
     } catch (e) {
       localStorage.removeItem("usuarioLogado");
+      localStorage.removeItem("tokenGringotts");
     }
   }
 
@@ -30,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       removerMensagem();
 
-      // Validações no Front-end
       if (usuario.length < 3) {
         exibirMensagem("Informe um e-mail ou CBF válido.", "erro");
         campoUsuario.focus();
@@ -43,14 +59,13 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Feedback visual do botão
       const btnSubmit = formLogin.querySelector(".btn-entrar");
       btnSubmit.disabled = true;
       const textoOriginal = btnSubmit.textContent;
       btnSubmit.textContent = "VERIFICANDO CHAVE...";
 
       try {
-        const response = await fetch("http://localhost/Sistemas-Computacionais/Back-end/api.php?action=login", {
+        const response = await fetch(obterUrlApi("login"), {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -63,25 +78,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const resultado = await response.json();
 
-        if (response.ok) {
-          // Guarda os dados da sessão no navegador
+        if (response.ok && resultado.sucesso) {
+          localStorage.setItem("tokenGringotts", resultado.token);
           localStorage.setItem("usuarioLogado", JSON.stringify(resultado.usuario));
 
           formLogin.style.display = "none";
-          
+
           exibirMensagem(
             `🔑 <strong>Acesso Concedido!</strong><br><br>` +
             `Acessando os cofres de <strong>${resultado.usuario.nome_completo || usuario}</strong>...`,
             "sucesso"
           );
 
-          // Redireciona dinamicamente para a página devolvida pelo PHP (admin.html ou perfil.html)
+          const eAdmin = verificarSeEhAdmin(resultado.usuario);
+          const destino = eAdmin ? "admin.html" : "perfil.html";
+
           setTimeout(() => {
-            window.location.href = resultado.redirecionarPara || "perfil.html";
+            window.location.href = destino;
           }, 1200);
 
         } else {
-          // Reativa o botão em caso de erro
           btnSubmit.disabled = false;
           btnSubmit.textContent = textoOriginal;
           exibirMensagem(resultado.erro || "E-mail ou palavra-passe incorretos.", "erro");

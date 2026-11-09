@@ -1,18 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ==========================================
-  // 1. VERIFICAÇÃO DE SESSÃO E PERMISSÃO
-  // ==========================================
-  const dadosSessao = localStorage.getItem("usuarioLogado");
+  function verificarSeEhAdmin(usuario) {
+    if (!usuario || !usuario.email) return false;
+    const emailUser = String(usuario.email).trim().toLowerCase();
+    return emailUser.endsWith("@gringotts.com") || emailUser.includes("@gringotts.com");
+  }
 
-  if (!dadosSessao) {
-    alert("Acesso negado! Faça login primeiro.");
+  // 1. VERIFICAÇÃO DE SESSÃO E PERMISSÃO (JWT)
+  const dadosSessao = localStorage.getItem("usuarioLogado");
+  const token = localStorage.getItem("tokenGringotts");
+
+  if (!dadosSessao || !token) {
+    alert("Acesso negado ou sessão expirada! Faça login primeiro.");
+    localStorage.removeItem("usuarioLogado");
+    localStorage.removeItem("tokenGringotts");
     window.location.href = "login.html";
     return;
   }
 
-  const usuarioLogado = JSON.parse(dadosSessao);
-  const emailUser = (usuarioLogado.email || "").toLowerCase();
-  const eAdmin = emailUser.endsWith("@gringotts.com") || usuarioLogado.perfil_id == 2;
+  let usuarioLogado = JSON.parse(dadosSessao);
+  const eAdmin = verificarSeEhAdmin(usuarioLogado);
 
   if (!eAdmin) {
     alert("Acesso restrito aos administradores do Banco Gringotts.");
@@ -24,6 +30,37 @@ document.addEventListener("DOMContentLoaded", () => {
   if (elementoNome) {
     elementoNome.textContent = `Supervisor(a) ${usuarioLogado.nome_completo || usuarioLogado.email}`;
   }
+
+  // Elementos do Avatar e Foto do Administrador
+  const imgAvatarAdmin = document.getElementById("img-avatar-admin");
+  const emojiAvatarAdmin = document.getElementById("emoji-avatar-admin");
+  const containerAvatarAdmin = document.getElementById("avatar-admin-box") || document.querySelector(".avatar-bruxo");
+
+  function renderizarFotoAdmin(fotoUrl) {
+    const temFoto = fotoUrl && String(fotoUrl).trim().length > 50;
+
+    if (imgAvatarAdmin) {
+      if (temFoto) {
+        imgAvatarAdmin.src = fotoUrl;
+        imgAvatarAdmin.style.display = "block";
+        if (emojiAvatarAdmin) emojiAvatarAdmin.style.display = "none";
+      } else {
+        imgAvatarAdmin.style.display = "none";
+        if (emojiAvatarAdmin) emojiAvatarAdmin.style.display = "inline";
+      }
+      return;
+    }
+
+    if (containerAvatarAdmin) {
+      if (temFoto) {
+        containerAvatarAdmin.innerHTML = `<img src="${fotoUrl}" alt="Foto do Diretor" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;" />`;
+      } else {
+        containerAvatarAdmin.innerHTML = `<span style="font-size: 2.5rem;">👺</span>`;
+      }
+    }
+  }
+
+  renderizarFotoAdmin(usuarioLogado.foto_perfil);
 
   function obterUrlApi(action) {
     if (window.location.port === "5500" || window.location.hostname === "127.0.0.1") {
@@ -64,9 +101,118 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnFecharModalAdmin = document.getElementById("btnFecharModalAdmin");
   const btnAlternarStatus = document.getElementById("btnAlternarStatus");
 
-  // ==========================================
-  // 2. NAVEGAÇÃO ENTRE ABAS (CARDS & BOTÕES)
-  // ==========================================
+  // Elementos do Modal de Edição do Admin
+  const modalEditarPerfil = document.getElementById("modal-editar-perfil");
+  const btnAbrirModalPerfil = document.getElementById("btn-abrir-modal-perfil");
+  const btnFecharModalPerfil = document.getElementById("btn-fechar-modal-perfil");
+  const formEditarPerfil = document.getElementById("form-editar-perfil");
+  const inputFotoFile = document.getElementById("input-foto-file");
+  const previewFotoPerfil = document.getElementById("preview-foto-perfil");
+  const previewEmojiFoto = document.getElementById("preview-emoji-foto");
+  const editNomeCompleto = document.getElementById("edit-nome-completo");
+  const editFamilia = document.getElementById("edit-familia");
+  const editProfissao = document.getElementById("edit-profissao");
+
+  let fotoBase64 = usuarioLogado.foto_perfil || "";
+
+  // 2. LÓGICA DE EDIÇÃO DE DADOS E FOTO DO ADMIN
+  if (btnAbrirModalPerfil) {
+    btnAbrirModalPerfil.addEventListener("click", () => {
+      const u = usuarioLogado;
+      if (editNomeCompleto) editNomeCompleto.value = u.nome_completo || "";
+      if (editFamilia) editFamilia.value = u.familia || "";
+      if (editProfissao) editProfissao.value = u.profissao || "";
+
+      fotoBase64 = u.foto_perfil || "";
+      if (fotoBase64 && fotoBase64.length > 50) {
+        if (previewFotoPerfil) {
+          previewFotoPerfil.src = fotoBase64;
+          previewFotoPerfil.style.display = "block";
+        }
+        if (previewEmojiFoto) previewEmojiFoto.style.display = "none";
+      } else {
+        if (previewFotoPerfil) previewFotoPerfil.style.display = "none";
+        if (previewEmojiFoto) previewEmojiFoto.style.display = "inline";
+      }
+
+      if (modalEditarPerfil) modalEditarPerfil.style.display = "flex";
+    });
+  }
+
+  if (btnFecharModalPerfil) {
+    btnFecharModalPerfil.addEventListener("click", () => {
+      if (modalEditarPerfil) modalEditarPerfil.style.display = "none";
+    });
+  }
+
+  if (inputFotoFile) {
+    inputFotoFile.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        if (file.size > 2 * 1024 * 1024) {
+          alert("A imagem selecionada deve ter no máximo 2MB.");
+          inputFotoFile.value = "";
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (evt) => {
+          fotoBase64 = evt.target.result;
+          if (previewFotoPerfil) {
+            previewFotoPerfil.src = fotoBase64;
+            previewFotoPerfil.style.display = "block";
+          }
+          if (previewEmojiFoto) previewEmojiFoto.style.display = "none";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  if (formEditarPerfil) {
+    formEditarPerfil.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const tokenAtual = localStorage.getItem("tokenGringotts");
+      const dadosAtualizados = {
+        nome_completo: editNomeCompleto ? editNomeCompleto.value.trim() : "",
+        familia: editFamilia ? editFamilia.value.trim() : "",
+        profissao: editProfissao ? editProfissao.value.trim() : "",
+        foto_perfil: fotoBase64
+      };
+
+      try {
+        const response = await fetch(obterUrlApi("atualizar_perfil"), {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${tokenAtual}`
+          },
+          body: JSON.stringify(dadosAtualizados)
+        });
+
+        const resultado = await response.json();
+
+        if (response.ok && resultado.sucesso) {
+          alert(resultado.mensagem || "Perfil atualizado com sucesso!");
+          if (resultado.usuario) {
+            localStorage.setItem("usuarioLogado", JSON.stringify(resultado.usuario));
+            usuarioLogado = resultado.usuario;
+          }
+          if (elementoNome) {
+            elementoNome.textContent = `Supervisor(a) ${usuarioLogado.nome_completo || usuarioLogado.email}`;
+          }
+          renderizarFotoAdmin(usuarioLogado.foto_perfil);
+          if (modalEditarPerfil) modalEditarPerfil.style.display = "none";
+        } else {
+          alert("Erro: " + (resultado.erro || "Falha ao atualizar dados."));
+        }
+      } catch (err) {
+        alert("Erro de comunicação: " + err.message);
+      }
+    });
+  }
+
+  // 3. NAVEGAÇÃO ENTRE ABAS
   const botoesAbas = document.querySelectorAll(".btn-aba-admin");
   const conteudosAbas = document.querySelectorAll(".conteudo-aba-admin");
   const elementosNavegacao = document.querySelectorAll("[data-aba]");
@@ -99,12 +245,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ==========================================
-  // 3. CARREGAMENTO DOS DADOS VIA API
-  // ==========================================
+  // 4. CARREGAMENTO DOS DADOS VIA API
   async function carregarDadosAdministrativos() {
     try {
-      const response = await fetch(obterUrlApi("listar_dados_admin"));
+      const tokenAtual = localStorage.getItem("tokenGringotts");
+
+      const response = await fetch(obterUrlApi("listar_dados_admin"), {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${tokenAtual}`
+        }
+      });
+
       const resultado = await response.json();
 
       if (response.ok && resultado.sucesso) {
@@ -117,16 +270,18 @@ document.addEventListener("DOMContentLoaded", () => {
         atualizarMetricas();
         renderizarTodasAsTabelas();
       } else {
-        console.error("Erro na API de dados admin:", resultado.erro);
+        if (response.status === 401 || response.status === 403) {
+          alert("Sessão expirada ou não autorizada. Faça login novamente.");
+          localStorage.removeItem("usuarioLogado");
+          localStorage.removeItem("tokenGringotts");
+          window.location.href = "login.html";
+        }
       }
     } catch (error) {
       console.error("Erro ao comunicar com a API do Admin:", error);
     }
   }
 
-  // ==========================================
-  // 4. ATUALIZAÇÃO DE MÉTRICAS NO TOPO
-  // ==========================================
   function atualizarMetricas() {
     if (totalCofresEl) totalCofresEl.textContent = dadosAdmin.usuarios.length;
 
@@ -141,9 +296,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (solicitacoesCreditoEl) solicitacoesCreditoEl.textContent = `${empPendentes + cartoesPendentes} ANÁLISES`;
   }
 
-  // ==========================================
-  // 5. RENDERIZAÇÃO DAS TABELAS
-  // ==========================================
   function renderizarTodasAsTabelas() {
     renderizarTabelaUsuarios();
     renderizarTabelaAgendamentos();
@@ -161,8 +313,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const filtrados = dadosAdmin.usuarios.filter(u => {
       const numCofre = 600 + parseInt(u.id);
       const bateTexto = (u.nome_completo || "").toLowerCase().includes(termo) ||
-                         (u.email || "").toLowerCase().includes(termo) ||
-                         `${numCofre}`.includes(termo);
+                        (u.email || "").toLowerCase().includes(termo) ||
+                        `${numCofre}`.includes(termo);
 
       const statusUsuario = u.status || "ATIVO";
       const bateStatus = (statusSel === "TODOS") || (statusUsuario === statusSel);
@@ -179,10 +331,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const st = u.status || "ATIVO";
       const statusClass = st === "BLOQUEADO" ? "status-bloqueado" : (st === "INSPECAO" ? "status-inspecao" : "status-ativo");
 
+      const temFoto = u.foto_perfil && String(u.foto_perfil).trim().length > 50;
+      const avatarHtml = temFoto 
+        ? `<img src="${u.foto_perfil}" style="width:28px; height:28px; border-radius:50%; object-fit:cover; vertical-align:middle; margin-right:8px; border:1px solid #d4af37;" />`
+        : `<span style="margin-right:8px;">🧙‍♂️</span>`;
+
       return `
         <tr>
           <td class="cofre-numero">#${numCofre}-A</td>
-          <td><strong>${u.nome_completo || 'Sem Nome'}</strong></td>
+          <td>${avatarHtml}<strong>${u.nome_completo || 'Sem Nome'}</strong></td>
           <td>${u.email}</td>
           <td><small style="color:#aaa;">${u.tipo_cofre || 'Bronze Padrão'}</small></td>
           <td>${u.cbf || 'Isento'}</td>
@@ -197,12 +354,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderizarTabelaAgendamentos() {
     if (!tabelaAgendamentos) return;
-
     if (dadosAdmin.agendamentos.length === 0) {
       tabelaAgendamentos.innerHTML = `<tr><td colspan="7" class="tabela-vazia">Nenhum agendamento registrado.</td></tr>`;
       return;
     }
-
     tabelaAgendamentos.innerHTML = dadosAdmin.agendamentos.map(a => {
       const st = a.status || "PENDENTE";
       return `
@@ -228,12 +383,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderizarTabelaChaves() {
     if (!tabelaChaves) return;
-
     if (dadosAdmin.chaves.length === 0) {
       tabelaChaves.innerHTML = `<tr><td colspan="8" class="tabela-vazia">Nenhuma solicitação de chave registrada.</td></tr>`;
       return;
     }
-
     tabelaChaves.innerHTML = dadosAdmin.chaves.map(c => {
       const st = c.status || "PENDENTE";
       return `
@@ -260,12 +413,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderizarTabelaEmprestimos() {
     if (!tabelaEmprestimos) return;
-
     if (dadosAdmin.emprestimos.length === 0) {
       tabelaEmprestimos.innerHTML = `<tr><td colspan="8" class="tabela-vazia">Nenhuma proposta de empréstimo submetida.</td></tr>`;
       return;
     }
-
     tabelaEmprestimos.innerHTML = dadosAdmin.emprestimos.map(e => {
       const st = e.status || "PENDENTE";
       return `
@@ -292,16 +443,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderizarTabelaCartoes() {
     if (!tabelaCartoes) return;
-
     if (dadosAdmin.cartoes.length === 0) {
       tabelaCartoes.innerHTML = `<tr><td colspan="7" class="tabela-vazia">Nenhuma solicitação de Cartão Black encontrada.</td></tr>`;
       return;
     }
-
     tabelaCartoes.innerHTML = dadosAdmin.cartoes.map(cb => {
       const st = cb.status || "PENDENTE";
       const dataFormatada = cb.data_solicitacao ? new Date(cb.data_solicitacao).toLocaleDateString("pt-BR") : 'Recente';
-
       return `
         <tr>
           <td><strong>#CB-${cb.id}</strong></td>
@@ -346,12 +494,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.alterarStatusSolicitacao = async (tabela, id, novoStatus) => {
     try {
+      const tokenAtual = localStorage.getItem("tokenGringotts");
       const response = await fetch(obterUrlApi("atualizar_status_solicitacao"), {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${tokenAtual}`
+        },
         body: JSON.stringify({ tabela, id, status: novoStatus })
       });
-
       const res = await response.json();
       if (response.ok) {
         carregarDadosAdministrativos();
@@ -372,7 +523,13 @@ document.addEventListener("DOMContentLoaded", () => {
     modalTituloCofre.textContent = `Gestão do Cofre #${numCofre}-A`;
     const statusAtual = cofreSelecionado.status || "ATIVO";
 
+    const temFoto = cofreSelecionado.foto_perfil && String(cofreSelecionado.foto_perfil).trim().length > 50;
+    const fotoHtml = temFoto 
+      ? `<div style="text-align:center; margin-bottom:15px;"><img src="${cofreSelecionado.foto_perfil}" style="width:80px; height:80px; border-radius:50%; object-fit:cover; border:2px solid #d4af37;" /></div>`
+      : '';
+
     modalConteudoCofre.innerHTML = `
+      ${fotoHtml}
       <div class="linha-detalhe"><span>Titular:</span> <strong>${cofreSelecionado.nome_completo || 'N/A'}</strong></div>
       <div class="linha-detalhe"><span>E-mail:</span> <strong>${cofreSelecionado.email}</strong></div>
       <div class="linha-detalhe"><span>CBF Bruxo:</span> <strong>${cofreSelecionado.cbf || 'Isento'}</strong></div>
@@ -412,10 +569,58 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnLogout) {
     btnLogout.addEventListener("click", () => {
       localStorage.removeItem("usuarioLogado");
+      localStorage.removeItem("tokenGringotts");
       alert("Sessão administrativa encerrada.");
       window.location.href = "login.html";
     });
   }
+
+  window.alterarSenhaUsuario = async function () {
+    const senhaAtual = prompt("Digite a sua senha atual:");
+    if (!senhaAtual) return;
+
+    const novaSenha = prompt("Digite a nova senha (deve ter mais de 6 caracteres, incluir maiúsculas, minúsculas, números e especial):");
+    if (!novaSenha) return;
+
+    if (novaSenha.length <= 6) {
+      alert("Erro: A nova senha deve ter mais de 6 caracteres.");
+      return;
+    }
+    if (!/[0-9]/.test(novaSenha) || !/[a-z]/.test(novaSenha) || !/[A-Z]/.test(novaSenha) || !/[^A-Za-z0-9]/.test(novaSenha)) {
+      alert("Erro: A nova senha deve conter números, letras maiúsculas, minúsculas e caractere especial (ex: @, #, $).");
+      return;
+    }
+
+    const confirmaSenha = prompt("Confirme a nova senha:");
+    if (novaSenha !== confirmaSenha) {
+      alert("Erro: A confirmação de senha não confere.");
+      return;
+    }
+
+    try {
+      const tokenAtual = localStorage.getItem("tokenGringotts");
+      const response = await fetch(obterUrlApi("alterar_senha"), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${tokenAtual}`
+        },
+        body: JSON.stringify({
+          senha_atual: senhaAtual,
+          nova_senha: novaSenha
+        })
+      });
+
+      const res = await response.json();
+      if (response.ok && res.sucesso) {
+        alert(res.mensagem || "Senha alterada com sucesso!");
+      } else {
+        alert("Erro ao alterar senha: " + (res.erro || "Falha na operação."));
+      }
+    } catch (err) {
+      alert("Erro de comunicação com o servidor: " + err.message);
+    }
+  };
 
   carregarDadosAdministrativos();
 });

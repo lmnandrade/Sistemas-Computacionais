@@ -9,10 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputRegistro = document.getElementById("registro-ministerio");
 
   // ==========================================
-  // 1. VERIFICAÇÃO DE SESSÃO DO USUÁRIO
+  // 1. VERIFICAÇÃO DE SESSÃO DO USUÁRIO & TOKEN JWT
   // ==========================================
   let usuarioLogado = null;
   const dadosSessao = localStorage.getItem("usuarioLogado");
+  const token = localStorage.getItem("tokenGringotts");
 
   if (dadosSessao) {
     try {
@@ -22,8 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Função para ajustar o caminho do api.php dinamicamente
+  // Helper de URL compatível com Live Server (porta 5500) e Apache
   function obterUrlApi(action) {
+    if (window.location.port === "5500" || window.location.hostname === "127.0.0.1") {
+      return `http://localhost/Sistemas-Computacionais/Back-end/api.php?action=${action}`;
+    }
     return window.location.pathname.includes("/Front-end/")
       ? `../Back-end/api.php?action=${action}`
       : `Back-end/api.php?action=${action}`;
@@ -67,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
   calcularEmprestimo();
 
   // ==========================================
-  // 3. SUBMISSÃO DA SOLICITAÇÃO (INTEGRAÇÃO API)
+  // 3. SUBMISSÃO DA SOLICITAÇÃO (INTEGRAÇÃO API COM JWT)
   // ==========================================
   if (formEmprestimo) {
     formEmprestimo.addEventListener("submit", async (e) => {
@@ -84,8 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Validação de autenticação
-      if (!usuarioLogado || !usuarioLogado.id) {
+      // Validação de autenticação via JWT
+      const tokenAtual = localStorage.getItem("tokenGringotts");
+      if (!usuarioLogado || !usuarioLogado.id || !tokenAtual) {
         exibirMensagem(
           "Você precisa estar logado para solicitar um empréstimo. <a href='login.html' style='color:#D4AF37; font-weight:bold;'>Faça Login aqui</a>.",
           "erro"
@@ -113,7 +118,10 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const response = await fetch(obterUrlApi("solicitar_emprestimo"), {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { 
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${tokenAtual}`
+          },
           body: JSON.stringify(payload)
         });
 
@@ -130,7 +138,11 @@ document.addEventListener("DOMContentLoaded", () => {
           formEmprestimo.reset();
           calcularEmprestimo();
         } else {
-          exibirMensagem(`Erro no requerimento: ${resultado.erro || "Não foi possível registrar a proposta de empréstimo."}`, "erro");
+          if (response.status === 401) {
+            exibirMensagem("Sessão expirada. Por favor, <a href='login.html' style='color:#D4AF37;'>faça login novamente</a>.", "erro");
+          } else {
+            exibirMensagem(`Erro no requerimento: ${resultado.erro || "Não foi possível registrar a proposta de empréstimo."}`, "erro");
+          }
         }
       } catch (error) {
         console.error("Erro na comunicação com o servidor:", error);

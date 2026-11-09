@@ -13,6 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let usuarioLogado = null;
   const dadosSessao = localStorage.getItem("usuarioLogado");
 
+  // Helper de URL compatível com Live Server (porta 5500) e Apache
+  function obterUrlApi(action) {
+    if (window.location.port === "5500" || window.location.hostname === "127.0.0.1") {
+      return `http://localhost/Sistemas-Computacionais/Back-end/api.php?action=${action}`;
+    }
+    return window.location.pathname.includes("/Front-end/")
+      ? `../Back-end/api.php?action=${action}`
+      : `Back-end/api.php?action=${action}`;
+  }
+
   if (dadosSessao) {
     try {
       usuarioLogado = JSON.parse(dadosSessao);
@@ -56,10 +66,17 @@ document.addEventListener("DOMContentLoaded", () => {
         observacoes: document.getElementById("observacoes").value.trim()
       };
 
+      // Configuração de cabeçalhos incluindo JWT quando disponível
+      const tokenAtual = localStorage.getItem("tokenGringotts");
+      const headers = { "Content-Type": "application/json" };
+      if (tokenAtual) {
+        headers["Authorization"] = `Bearer ${tokenAtual}`;
+      }
+
       try {
-        const response = await fetch("../api.php?action=agendar", {
+        const response = await fetch(obterUrlApi("agendar"), {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: headers,
           body: JSON.stringify(dadosAgendamento)
         });
 
