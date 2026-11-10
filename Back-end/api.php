@@ -9,8 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-define('JWT_SECRET', 'Gringotts_Chave_Secreta_JWT_2026_Bruxaria_Segura!');
-define('MODO_DEV', true); // Altere para false em ambiente de produção
+// Carrega as variáveis de ambiente do arquivo .env
+require_once __DIR__ . '/config/env.php';
+
+define('JWT_SECRET', $_ENV['JWT_SECRET'] ?? getenv('JWT_SECRET') ?? 'Gringotts_Chave_Secreta_JWT_2026_Bruxaria_Segura!');
+define('MODO_DEV', filter_var($_ENV['MODO_DEV'] ?? getenv('MODO_DEV') ?? true, FILTER_VALIDATE_BOOLEAN));
 
 function base64url_encode($data) {
     return str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($data));
@@ -22,7 +25,7 @@ function base64url_decode($data) {
 
 function gerarJWT($payload) {
     $header = json_encode(['typ' => 'JWT', 'alg' => 'HS256']);
-    $payload['exp'] = time() + (8 * 3600); // Expiracao em 8 horas
+    $payload['exp'] = time() + (8 * 3600); // Expiração em 8 horas
 
     $base64UrlHeader = base64url_encode($header);
     $base64UrlPayload = base64url_encode(json_encode($payload));

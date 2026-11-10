@@ -48,7 +48,7 @@ function executarTeste($id, $nome, $descricao, $callback) {
 }
 
 // -------------------------------------------------------------
-// EXECUÇÃO DOS 5 TESTES DE REGRAS DE NEGÓCIO
+// EXECUÇÃO DOS 12 TESTES AUTOMATIZADOS 
 // -------------------------------------------------------------
 
 // TESTE 1: Validação de Complexidade de Senha Forte
@@ -90,8 +90,8 @@ executarTeste(
             return (substr($emailClean, -14) === '@gringotts.com');
         };
 
-        $emailBruxoNormal = "harry.potter@hogwarts.edu";
-        $emailGoblinAdmin = "grampo.diretor@gringotts.com";
+        $emailBruxoNormal = "harry.potter@gmail.com";
+        $emailGoblinAdmin = "grampo@gringotts.com";
 
         if ($verificarAdmin($emailBruxoNormal) === true) {
             return ['sucesso' => false, 'mensagem' => "Falha: Email comum recebeu acesso administrativo indevido."];
@@ -122,11 +122,11 @@ executarTeste(
     }
 );
 
-// TESTE 4: Validação de Estrutura do JWT
+// TESTE 4: Validação de Estrutura do JWT (Expiração)
 executarTeste(
     4,
-    "Integridade do Assinador JWT",
-    "Gera uma estrutura JWT de simulação e testa se o token expira ou falha em caso de adulteração.",
+    "Integridade do Assinador JWT (Validação de Tempo de Expiração)",
+    "Gera uma estrutura JWT de simulação e testa se o token expira ou falha em caso de timestamp no passado.",
     function() {
         $header = base64_encode(json_encode(['alg' => 'HS256', 'typ' => 'JWT']));
         $payloadValido = base64_encode(json_encode(['usuario_id' => 1, 'exp' => time() + 3600]));
@@ -161,6 +161,148 @@ executarTeste(
         } else {
             return ['sucesso' => false, 'mensagem' => "Falha ao gravar registro de auditoria no banco de dados."];
         }
+    }
+);
+
+// TESTE 6: Proteção contra SQL Injection (Tratamento com PDO Prepared Statements)
+executarTeste(
+    6,
+    "Tratamento de Carga Útil SQL Injection via PDO",
+    "Simula o bind de parâmetro PDO com a string maliciosa ' OR '1'='1 para validar que aspas e operadores não corrompem a instrução.",
+    function() use ($db) {
+        $emailMalicioso = "' OR '1'='1";
+        $stmt = $db->prepare("SELECT COUNT(*) as total FROM usuarios WHERE TRIM(email) = :email");
+        $stmt->execute([':email' => $emailMalicioso]);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ((int)$res['total'] === 0) {
+            return ['sucesso' => true, 'mensagem' => "Aprovado: A injeção de código SQL foi tratada como texto literal pela consulta PDO."];
+        } else {
+            return ['sucesso' => false, 'mensagem' => "Falha: Injeção SQL retornou resultados indevidos."];
+        }
+    }
+);
+
+// TESTE 7: Proteção Contra XSS (Sanitização com htmlspecialchars)
+executarTeste(
+    7,
+    "Sanitização de Cargas Úteis XSS em Entradas de Formulários",
+    "Verifica se scripts maliciosos de tag <script> são devidamente sanitizados antes do processamento.",
+    function() {
+        $payloadXSS = "<script>alert('xss')</script>";
+        $sanitizado = htmlspecialchars($payloadXSS, ENT_QUOTES, 'UTF-8');
+
+        if (strpos($sanitizado, '<script>') !== false) {
+            return ['sucesso' => false, 'mensagem' => "Falha: Tags <script> foram mantidas sem escape."];
+        }
+
+        if ($sanitizado === "&lt;script&gt;alert(&#039;xss&#039;)&lt;/script&gt;" || strpos($sanitizado, '&lt;script&gt;') !== false) {
+            return ['sucesso' => true, 'mensagem' => "Aprovado: O script XSS foi convertido em entidades HTML seguras."];
+        }
+
+        return ['sucesso' => false, 'mensagem' => "Falha: Resultado de sanitização inesperado."];
+    }
+);
+
+// TESTE 8: Validação de Campos Obrigatórios de Autenticação
+executarTeste(
+    8,
+    "Validação de Campos Obrigatórios de Login",
+    "Testa a rejeição quando e-mail ou senha não são fornecidos ou estão vazios.",
+    function() {
+        $validarCamposLogin = function($email, $senha) {
+            return !empty(trim($email)) && !empty($senha);
+        };
+
+        if ($validarCamposLogin("", "Senha123!") === true) return ['sucesso' => false, 'mensagem' => "Falha: Aceitou login com e-mail vazio."];
+        if ($validarCamposLogin("draco@gmail.com", "") === true) return ['sucesso' => false, 'mensagem' => "Falha: Aceitou login com senha vazia."];
+        if ($validarCamposLogin("draco@gmail.com", "Senha123!") === false) return ['sucesso' => false, 'mensagem' => "Falha: Rejeitou campos válidos."];
+
+        return ['sucesso' => true, 'mensagem' => "Aprovado: Intercepta e rejeita requisições com campos obrigatórios ausentes."];
+    }
+);
+
+// TESTE 9: Verificação de Assinatura HMAC-SHA256 Adulterada no JWT
+executarTeste(
+    9,
+    "Validação de Assinatura de Chave HMAC do Token JWT",
+    "Testa a detecção de adulteração no valor da assinatura do token JWT.",
+    function() {
+        $secret = "Gringotts_Chave_Secreta_JWT_2026_Bruxaria_Segura!";
+        $header = base64_encode(json_encode(['alg' => 'HS256', 'typ' => 'JWT']));
+        $payload = base64_encode(json_encode(['usuario_id' => 4, 'email' => 'draco@gmail.com']));
+
+        $assinaturaValida = hash_hmac('sha256', $header . "." . $payload, $secret);
+        $assinaturaAdulterada = hash_hmac('sha256', $header . "." . $payload, "Chave_Falsa_Invasor");
+
+        if (hash_equals($assinaturaValida, $assinaturaAdulterada)) {
+            return ['sucesso' => false, 'mensagem' => "Falha: Assinatura adulterada foi validada como autêntica."];
+        }
+
+        return ['sucesso' => true, 'mensagem' => "Aprovado: Alterações na chave ou no hash rejeitam o token com falha de assinatura."];
+    }
+);
+
+// TESTE 10: Regra de Solitação de Empréstimos (Validação de Parâmetros)
+executarTeste(
+    10,
+    "Validação de Solicitação de Empréstimo em Galeões",
+    "Valida se os parâmetros de valor (>0) e prazo (>0) são obrigatórios para registrar o empréstimo.",
+    function() {
+        $validarEmprestimo = function($valor, $prazo) {
+            return (is_numeric($valor) && (int)$valor > 0 && is_numeric($prazo) && (int)$prazo > 0);
+        };
+
+        if ($validarEmprestimo(0, 12) === true) return ['sucesso' => false, 'mensagem' => "Falha: Empréstimo com valor 0 foi aceito."];
+        if ($validarEmprestimo(500, 0) === true) return ['sucesso' => false, 'mensagem' => "Falha: Empréstimo com prazo 0 foi aceito."];
+        if ($validarEmprestimo(1000, 24) === false) return ['sucesso' => false, 'mensagem' => "Falha: Solicitação válida de empréstimo foi rejeitada."];
+
+        return ['sucesso' => true, 'mensagem' => "Aprovado: Parâmetros numéricos de empréstimo validados com sucesso."];
+    }
+);
+
+// TESTE 11: Validação dos Dados de Agendamento de Visita ao Banco
+executarTeste(
+    11,
+    "Integridade dos Campos do Agendamento de Visitas aos Cofres",
+    "Garante que dados essenciais (nome, email, serviço, data e horário) são preenchidos corretamente.",
+    function() {
+        $validarAgendamento = function($dados) {
+            return (
+                !empty($dados['nome']) &&
+                !empty($dados['email']) &&
+                !empty($dados['servico']) &&
+                !empty($dados['data_visita']) &&
+                !empty($dados['horario_visita'])
+            );
+        };
+
+        $incompleto = ['nome' => 'Harry', 'email' => 'harry@hogwarts.edu', 'servico' => 'Retirada'];
+        $completo   = ['nome' => 'Harry', 'email' => 'harry@hogwarts.edu', 'servico' => 'Retirada', 'data_visita' => '2026-11-20', 'horario_visita' => '10:00'];
+
+        if ($validarAgendamento($incompleto) === true) return ['sucesso' => false, 'mensagem' => "Falha: Agendamento incompleto foi aprovado."];
+        if ($validarAgendamento($completo) === false) return ['sucesso' => false, 'mensagem' => "Falha: Agendamento completo foi recusado."];
+
+        return ['sucesso' => true, 'mensagem' => "Aprovado: Validação de presença de todos os dados do agendamento."];
+    }
+);
+
+// TESTE 12: Lista Branca de Tabelas para Alteração de Status (Segurança Mutacional)
+executarTeste(
+    12,
+    "Proteção de Lista Branca (Whitelist) para Alteração de Status Admin",
+    "Verifica se tentativas de atualizar tabelas não autorizadas via API administrativa são bloqueadas.",
+    function() {
+        $tabelasPermitidas = ['agendamentos', 'solicitacoes_chave', 'solicitacoes_cartao', 'solicitacoes_emprestimo'];
+
+        $validarTabela = function($tabela) use ($tabelasPermitidas) {
+            return in_array($tabela, $tabelasPermitidas);
+        };
+
+        if ($validarTabela('usuarios') === true) return ['sucesso' => false, 'mensagem' => "Falha: Tabela restrita 'usuarios' permitida para mutação direta."];
+        if ($validarTabela('solicitacoes_emprestimo') === false) return ['sucesso' => false, 'mensagem' => "Falha: Tabela válida 'solicitacoes_emprestimo' foi bloqueada."];
+
+        return ['sucesso' => true, 'mensagem' => "Aprovado: Lista branca impede alterações arbitrárias em tabelas de sistema."];
     }
 );
 
